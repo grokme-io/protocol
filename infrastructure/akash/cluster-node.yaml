@@ -1,0 +1,161 @@
+# Akash Deployment: IPFS Cluster Node
+# Deploy IPFS Cluster peer on Akash Network for decentralized storage
+#
+# Cost estimate: ~$30-50/month
+# Resources: 2 CPU, 8GB RAM, 500GB storage
+#
+# IMPORTANT: Replace all environment variables before deployment
+# NEVER commit actual secrets to version control
+
+---
+version: "2.0"
+
+services:
+  ipfs-cluster-node:
+    image: ipfs/ipfs-cluster:latest
+    expose:
+      - port: 9094
+        as: 9094
+        to:
+          - global: true
+        accept:
+          - http
+      - port: 9095
+        as: 9095
+        to:
+          - global: true
+        accept:
+          - http
+      - port: 9096
+        as: 9096
+        to:
+          - global: true
+        accept:
+          - tcp
+    env:
+      # REQUIRED: Replace with your cluster secret (32-byte hex)
+      - CLUSTER_SECRET=YOUR_CLUSTER_SECRET_HERE
+      
+      # REQUIRED: Unique name for this peer
+      - CLUSTER_PEERNAME=akash-node-01
+      
+      # Replication settings
+      - CLUSTER_REPLICATIONFACTORMIN=3
+      - CLUSTER_REPLICATIONFACTORMAX=5
+      
+      # Bootstrap peers (for joining existing cluster)
+      # Format: /ip4/IP/tcp/9096/p2p/PEER_ID
+      - CLUSTER_BOOTSTRAP=/ip4/BOOTSTRAP_IP/tcp/9096/p2p/BOOTSTRAP_PEER_ID
+      
+      # Monitoring
+      - CLUSTER_MONITORPINGINTERVAL=30s
+
+  ipfs-daemon:
+    image: ipfs/kubo:latest
+    expose:
+      - port: 4001
+        as: 4001
+        to:
+          - global: true
+        accept:
+          - tcp
+      - port: 5001
+        as: 5001
+        to:
+          - service: ipfs-cluster-node
+        accept:
+          - http
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+        accept:
+          - http
+    env:
+      # IPFS configuration
+      - IPFS_PROFILE=server
+      - IPFS_FD_MAX=4096
+
+profiles:
+  compute:
+    ipfs-cluster-node:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          size: 50Gi
+    
+    ipfs-daemon:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 8Gi
+        storage:
+          - size: 500Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      attributes:
+        # Prefer specific regions (optional)
+        # region: eu-west
+        
+      # Datacenter tier preference
+      # tier: community
+      
+      signedBy:
+        anyOf:
+          # Require audited providers (recommended)
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      
+      pricing:
+        ipfs-cluster-node:
+          denom: uakt
+          amount: 5000
+        
+        ipfs-daemon:
+          denom: uakt
+          amount: 20000
+
+deployment:
+  ipfs-cluster-node:
+    akash:
+      profile: ipfs-cluster-node
+      count: 1
+  
+  ipfs-daemon:
+    akash:
+      profile: ipfs-daemon
+      count: 1
+
+# Deployment instructions:
+#
+# 1. Install Akash CLI:
+#    curl https://raw.githubusercontent.com/akash-network/node/main/install.sh | bash
+#
+# 2. Create wallet and fund with AKT:
+#    akash keys add my-wallet
+#
+# 3. Replace environment variables above with your values
+#
+# 4. Deploy:
+#    akash tx deployment create cluster-node.yaml --from my-wallet
+#
+# 5. Accept bid:
+#    akash query market lease list --owner <your-address>
+#    akash tx market lease create --dseq <seq> --provider <provider>
+#
+# 6. Get service URIs:
+#    akash provider lease-status --dseq <seq> --provider <provider>
+#
+# 7. Monitor logs:
+#    akash provider lease-logs --dseq <seq> --provider <provider>
+#
+# For more details, see:
+# /docs/infrastructure/AKASH-DEPLOYMENT.md
+

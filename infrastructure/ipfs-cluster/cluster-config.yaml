@@ -1,0 +1,125 @@
+# IPFS Cluster Configuration Example
+# Based on ipfscluster.io best practices
+#
+# IMPORTANT: Replace all placeholder values before deployment
+# NEVER commit actual secrets to version control
+
+cluster:
+  # Unique name for this peer
+  peername: "grokme-cluster-node-01"
+  
+  # Shared secret (32-byte hex) - MUST be same across all peers
+  # Generate: od -vN 32 -An -tx1 /dev/urandom | tr -d ' \n'
+  secret: "YOUR_CLUSTER_SECRET_HERE_32_BYTES_HEX"
+  
+  # Minimum replicas across cluster
+  replication_factor_min: 3
+  
+  # Maximum replicas (for important content)
+  replication_factor_max: 5
+  
+  # Leave old cluster state (clean start)
+  leave_on_shutdown: false
+  
+  # Monitor ping interval
+  monitor_ping_interval: "30s"
+
+consensus:
+  raft:
+    # Number of times to retry commits
+    commit_retries: 2
+    
+    # Delay between commit retries
+    commit_retry_delay: "200ms"
+    
+    # Heartbeat timeout
+    heartbeat_timeout: "1s"
+    
+    # Election timeout (must be > heartbeat)
+    election_timeout: "3s"
+    
+    # Snapshot interval
+    snapshot_interval: "2m"
+
+allocator:
+  balanced:
+    # Allocate pins based on:
+    # - tag:region (geographic distribution)
+    # - freespace (available storage)
+    allocate_by:
+      - "tag:region"
+      - "freespace"
+
+pintracker:
+  stateless:
+    # Maximum pins in queue
+    max_pin_queue_size: 1000000
+    
+    # Concurrent pin operations
+    concurrent_pins: 10
+    
+    # Priority policy
+    pin_priority_policy: "new-first"
+
+api:
+  restapi:
+    # API listen address
+    http_listen_multiaddress: "/ip4/0.0.0.0/tcp/9094"
+    
+    # Enable CORS
+    cors_allowed_origins: ["*"]
+    
+    # Enable TLS (recommended for production)
+    ssl_cert_file: ""
+    ssl_key_file: ""
+    
+    # Basic auth (optional)
+    basic_auth_credentials: null
+
+ipfsproxy:
+  # IPFS proxy API (acts like IPFS daemon)
+  listen_multiaddress: "/ip4/0.0.0.0/tcp/9095"
+  
+  # Connect to local IPFS daemon
+  node_multiaddress: "/ip4/127.0.0.1/tcp/5001"
+
+ipfshttp:
+  # Connection to IPFS daemon API
+  node_multiaddress: "/ip4/127.0.0.1/tcp/5001"
+  
+  # Connection timeout
+  connect_swarms_delay: "30s"
+  
+  # Pin timeout
+  pin_timeout: "2m"
+  
+  # Unpin timeout
+  unpin_timeout: "3h"
+
+datastore:
+  # Badger datastore configuration
+  badger:
+    badger_options:
+      # Sync writes (for safety)
+      sync_writes: true
+      
+      # Max table size
+      max_table_size: 134217728
+
+# Peer tags for allocation
+tags:
+  region: "eu-central"  # eu-central, us-east, asia-southeast, etc.
+  tier: "production"     # production, staging, development
+  provider: "self-hosted" # self-hosted, aws, gcp, akash
+
+# Metrics
+metrics:
+  enable_stats: true
+  prometheus_endpoint: "/ip4/0.0.0.0/tcp/8888"
+
+# Tracing (optional, for debugging)
+tracing:
+  enable_tracing: false
+  jaeger_agent_endpoint: "/ip4/127.0.0.1/udp/6831"
+  jaeger_sampling_prob: 1.0
+

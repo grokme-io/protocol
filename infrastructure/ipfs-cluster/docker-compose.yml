@@ -1,0 +1,169 @@
+# Docker Compose: IPFS Cluster (Local Development/Testing)
+# 
+# This sets up a 3-node IPFS Cluster for local testing
+# NOT for production use - see cluster-config.yaml for production
+#
+# Usage:
+#   docker-compose up -d
+#   docker-compose ps
+#   docker-compose logs -f
+#   docker-compose down
+
+version: '3.8'
+
+services:
+  # Cluster Peer 1 (Leader)
+  cluster-peer-1:
+    image: ipfs/ipfs-cluster:latest
+    container_name: grokme-cluster-1
+    environment:
+      CLUSTER_PEERNAME: peer-1
+      CLUSTER_SECRET: ${CLUSTER_SECRET:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+      CLUSTER_IPFSHTTP_NODEMULTIADDRESS: /dns4/ipfs-1/tcp/5001
+      CLUSTER_REPLICATIONFACTORMIN: 2
+      CLUSTER_REPLICATIONFACTORMAX: 3
+      CLUSTER_MONITORPINGINTERVAL: 30s
+    ports:
+      - "9094:9094"   # API
+      - "9095:9095"   # Proxy API
+      - "9096:9096"   # Swarm
+    volumes:
+      - cluster-1-data:/data/ipfs-cluster
+    depends_on:
+      - ipfs-1
+    networks:
+      - grokme-cluster
+
+  # Cluster Peer 2 (Follower)
+  cluster-peer-2:
+    image: ipfs/ipfs-cluster:latest
+    container_name: grokme-cluster-2
+    environment:
+      CLUSTER_PEERNAME: peer-2
+      CLUSTER_SECRET: ${CLUSTER_SECRET:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+      CLUSTER_IPFSHTTP_NODEMULTIADDRESS: /dns4/ipfs-2/tcp/5001
+      CLUSTER_REPLICATIONFACTORMIN: 2
+      CLUSTER_REPLICATIONFACTORMAX: 3
+      CLUSTER_MONITORPINGINTERVAL: 30s
+    ports:
+      - "9194:9094"
+      - "9195:9095"
+      - "9196:9096"
+    volumes:
+      - cluster-2-data:/data/ipfs-cluster
+    depends_on:
+      - ipfs-2
+      - cluster-peer-1
+    networks:
+      - grokme-cluster
+
+  # Cluster Peer 3 (Follower)
+  cluster-peer-3:
+    image: ipfs/ipfs-cluster:latest
+    container_name: grokme-cluster-3
+    environment:
+      CLUSTER_PEERNAME: peer-3
+      CLUSTER_SECRET: ${CLUSTER_SECRET:-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef}
+      CLUSTER_IPFSHTTP_NODEMULTIADDRESS: /dns4/ipfs-3/tcp/5001
+      CLUSTER_REPLICATIONFACTORMIN: 2
+      CLUSTER_REPLICATIONFACTORMAX: 3
+      CLUSTER_MONITORPINGINTERVAL: 30s
+    ports:
+      - "9294:9094"
+      - "9295:9095"
+      - "9296:9096"
+    volumes:
+      - cluster-3-data:/data/ipfs-cluster
+    depends_on:
+      - ipfs-3
+      - cluster-peer-1
+    networks:
+      - grokme-cluster
+
+  # IPFS Node 1
+  ipfs-1:
+    image: ipfs/kubo:latest
+    container_name: grokme-ipfs-1
+    environment:
+      IPFS_PROFILE: server
+    ports:
+      - "4001:4001"   # Swarm
+      - "5001:5001"   # API
+      - "8080:8080"   # Gateway
+    volumes:
+      - ipfs-1-data:/data/ipfs
+    networks:
+      - grokme-cluster
+
+  # IPFS Node 2
+  ipfs-2:
+    image: ipfs/kubo:latest
+    container_name: grokme-ipfs-2
+    environment:
+      IPFS_PROFILE: server
+    ports:
+      - "4101:4001"
+      - "5101:5001"
+      - "8180:8080"
+    volumes:
+      - ipfs-2-data:/data/ipfs
+    networks:
+      - grokme-cluster
+
+  # IPFS Node 3
+  ipfs-3:
+    image: ipfs/kubo:latest
+    container_name: grokme-ipfs-3
+    environment:
+      IPFS_PROFILE: server
+    ports:
+      - "4201:4001"
+      - "5201:5001"
+      - "8280:8080"
+    volumes:
+      - ipfs-3-data:/data/ipfs
+    networks:
+      - grokme-cluster
+
+volumes:
+  cluster-1-data:
+  cluster-2-data:
+  cluster-3-data:
+  ipfs-1-data:
+  ipfs-2-data:
+  ipfs-3-data:
+
+networks:
+  grokme-cluster:
+    driver: bridge
+
+# Testing the cluster:
+#
+# 1. Start cluster:
+#    docker-compose up -d
+#
+# 2. Check cluster status:
+#    docker exec grokme-cluster-1 ipfs-cluster-ctl peers ls
+#
+# 3. Add content to cluster:
+#    docker exec grokme-cluster-1 ipfs-cluster-ctl add /path/to/file
+#
+# 4. Check pin status:
+#    docker exec grokme-cluster-1 ipfs-cluster-ctl status <CID>
+#
+# 5. Retrieve content from any IPFS node:
+#    curl http://localhost:8080/ipfs/<CID>
+#    curl http://localhost:8180/ipfs/<CID>
+#    curl http://localhost:8280/ipfs/<CID>
+#
+# 6. View logs:
+#    docker-compose logs -f cluster-peer-1
+#
+# 7. Stop cluster:
+#    docker-compose down
+#
+# Environment variables:
+#   CLUSTER_SECRET - Shared secret (32-byte hex)
+#                    Set via: export CLUSTER_SECRET=<your-secret>
+#                    Or create .env file in same directory
+

@@ -1,0 +1,50 @@
+# Secrets & Credentials
+*.key
+*.pem
+*.env
+*.env.local
+.env.*
+secrets/
+credentials/
+
+# IPFS Cluster sensitive data
+cluster-secret.txt
+**/cluster-secret*
+
+# Akash wallet keys
+akash-wallet.json
+**/wallet.json
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build outputs
+dist/
+build/
+out/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+temp/
+.cache/
+
+# Docker volumes (if running locally)
+*-data/
+
+# System files
+Thumbs.db
+
