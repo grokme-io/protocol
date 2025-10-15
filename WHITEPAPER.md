@@ -84,7 +84,7 @@ Capsule Layer (Implementations)
 **Why GROK?**
 1. Ownerless (no manipulation possible)
 2. Philosophical name (Heinlein, 1961)
-3. Massive dead balance (~40% already burned)
+3. Significant portion already burned to dead address
 4. Synchronicity (6.9B supply = 6.9 GB Genesis capacity)
 
 ### 2.3 Burn Mechanism

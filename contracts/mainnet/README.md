@@ -49,7 +49,7 @@ Owner: 0x000000000000000000000000000000000000dEaD
 ```
 Contract Address: 0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5
 Owner: 0x000...dEaD
-Dead Balance: ~40% of supply already burned
+Dead Balance: Significant portion already burned
 ```
 
 No admin can manipulate. Pure mathematics.
