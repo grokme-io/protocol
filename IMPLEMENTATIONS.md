@@ -165,7 +165,7 @@ Removed if: Protocol violation, misrepresentation, or malicious behavior detecte
 **Total Implementations:** 1 (+ 1 in development)  
 **Total Capacity:** 6.9 GB (Genesis only)  
 **Total GROK Burned:** [Tracked live via chain]  
-**Last Updated:** January 2025
+**Last Updated:** October 2025
 
 ---
 

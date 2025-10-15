@@ -119,6 +119,6 @@ Optional:
 
 ---
 
-**Updated:** January 2025  
+**Updated:** October 2025  
 **Maintained by:** Open source contributors (GitHub)
 

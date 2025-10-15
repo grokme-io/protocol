@@ -786,7 +786,7 @@ These are not aspirational goals. These are **mathematical guarantees** enforced
 
 ---
 
-**Last Updated:** January 2025  
+**Last Updated:** October 2025  
 **Status:** Peer Review Welcome  
 **License:** MIT (Open for Academic Use)
 

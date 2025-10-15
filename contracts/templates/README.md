@@ -52,7 +52,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 abstract contract CoreBurn {
     IERC20 public constant GROK_TOKEN = IERC20(0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5);
-    address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
+address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
     
     uint256 public totalGrokBurned;
     
@@ -62,13 +62,13 @@ abstract contract CoreBurn {
         uint256 tokenId
     );
     
-    function _burnGrok(uint256 amount) internal {
-        require(
+function _burnGrok(uint256 amount) internal {
+    require(
             GROK_TOKEN.transferFrom(msg.sender, BURN_ADDRESS, amount),
             "GROK burn failed"
-        );
+    );
         
-        totalGrokBurned += amount;
+    totalGrokBurned += amount;
         emit GrokBurned(msg.sender, amount, 0); // Override tokenId in child
     }
     
@@ -98,11 +98,11 @@ abstract contract SelfSealing {
         MAX_CAPACITY_BYTES = _maxCapacity;
     }
     
-    modifier capsuleOpen() {
-        require(totalBytesMinted < MAX_CAPACITY_BYTES, "Capsule sealed");
-        _;
-    }
-    
+modifier capsuleOpen() {
+    require(totalBytesMinted < MAX_CAPACITY_BYTES, "Capsule sealed");
+    _;
+}
+
     function _addBytes(uint256 bytes_) internal {
         totalBytesMinted += bytes_;
         emit CapacityUpdated(totalBytesMinted, MAX_CAPACITY_BYTES);
@@ -113,12 +113,12 @@ abstract contract SelfSealing {
     }
     
     function isCapsuleOpen() public view returns (bool) {
-        return totalBytesMinted < MAX_CAPACITY_BYTES;
-    }
-    
+    return totalBytesMinted < MAX_CAPACITY_BYTES;
+}
+
     function getRemainingCapacity() public view returns (uint256) {
-        if (totalBytesMinted >= MAX_CAPACITY_BYTES) return 0;
-        return MAX_CAPACITY_BYTES - totalBytesMinted;
+    if (totalBytesMinted >= MAX_CAPACITY_BYTES) return 0;
+    return MAX_CAPACITY_BYTES - totalBytesMinted;
     }
     
     function getCompletionPercentage() public view returns (uint256) {
@@ -496,6 +496,6 @@ Use freely. No attribution required. Build the future.
 
 ---
 
-**Last Updated:** January 2025  
+**Last Updated:** October 2025  
 **Template Version:** 1.0.0  
 **Compatible With:** Solidity ^0.8.20
