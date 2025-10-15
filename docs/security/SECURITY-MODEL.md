@@ -524,10 +524,10 @@ async function checkAvailability(cid: string) {
 - Frontend security issues
 
 **Rewards:**
-- Critical: $10,000+
-- High: $5,000
-- Medium: $1,000
-- Low: $500
+- Critical: Highest priority
+- High: Immediate attention
+- Medium: Important fix
+- Low: Minor improvement
 
 **Contact:** security@grokme.me (to be established)
 

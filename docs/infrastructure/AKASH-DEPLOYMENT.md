@@ -42,18 +42,6 @@ GROKME Principles          Akash Properties
 
 ### 2. Economic Efficiency
 
-**Cost comparison (monthly):**
-
-| Service | AWS | GCP | Akash |
-|---------|-----|-----|-------|
-| 2 CPU, 8 GB RAM, 100 GB | $80-120 | $70-100 | $20-40 |
-| IPFS node (500 GB) | $120-180 | $100-150 | $30-50 |
-| **Savings** | — | — | **70-80%** |
-
-**100-year infrastructure:**
-- Traditional cloud: ~$1.5M
-- Akash: ~$400k
-- **Savings: $1.1M**
 
 ### 3. True Decentralization
 
@@ -292,7 +280,6 @@ akash tx deployment close --dseq <deployment-seq>
 
 See [`/infrastructure/akash/cluster-node.yaml`](../../infrastructure/akash/cluster-node.yaml)
 
-**Cost estimate:** ~$30-40/month
 
 **Specs:**
 - 2 CPU
@@ -304,7 +291,6 @@ See [`/infrastructure/akash/cluster-node.yaml`](../../infrastructure/akash/clust
 
 See [`/infrastructure/akash/monitoring.yaml`](../../infrastructure/akash/monitoring.yaml)
 
-**Cost estimate:** ~$10-15/month
 
 **Components:**
 - Prometheus (metrics)
@@ -369,7 +355,6 @@ resources:
 ---
 
 ## Cost Optimization
-
 ### Strategy 1: Right-Sizing
 
 **Start small, scale up:**
@@ -459,21 +444,6 @@ done
 ```
 
 ### Cost Tracking
-
-```bash
-# Check monthly cost
-akash query market lease list --owner <your-address> \
-  | grep "price-amount" \
-  | awk '{sum += $2} END {print sum/1000000, "AKT/block"}'
-
-# Estimate monthly (assuming 2.6M blocks/month)
-# Monthly_AKT = (AKT/block) × 2.6M
-```
-
----
-
-## Troubleshooting
-
 ### Issue: No Bids Received
 
 **Cause:** Pricing too low, or resource requirements too high.
@@ -573,12 +543,12 @@ services:
 
 | Feature | AWS/GCP | Akash |
 |---------|---------|-------|
-| **Cost** | $80-120/month | $20-40/month |
 | **Censorship** | Possible (ToS) | Resistant |
 | **Vendor Lock-in** | High | None |
 | **Geographic Control** | Limited regions | Global providers |
 | **Permissionless** | No (account required) | Yes (wallet only) |
 | **Pricing Model** | Fixed | Competitive bid |
+| **Cost Efficiency** | Standard market | Competitive marketplace |
 | **Philosophical Alignment** | ❌ Centralized | ✅ Decentralized |
 
 **For GROKME:** Akash is not just cheaper—it's **philosophically correct**.

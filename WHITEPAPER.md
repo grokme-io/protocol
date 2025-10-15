@@ -284,7 +284,7 @@ See [docs/infrastructure/IPFS-CLUSTER.md](docs/infrastructure/IPFS-CLUSTER.md)
 - Self-healing (automatic recovery on failure)
 - 99.9999% availability (six nines)
 
-**Cost (100 years):** ~$288k shared infrastructure
+Shared infrastructure approach for long-term sustainability.
 
 ### 6.2 Akash Network
 
@@ -296,7 +296,7 @@ See [docs/infrastructure/AKASH-DEPLOYMENT.md](docs/infrastructure/AKASH-DEPLOYME
 - Permissionless
 - Community-operated nodes
 
-**Cost savings:** ~$1.1M over 100 years vs. traditional cloud
+Significant savings vs. traditional cloud infrastructure.
 
 ### 6.3 Filecoin Integration
 
@@ -304,7 +304,7 @@ See [docs/infrastructure/AKASH-DEPLOYMENT.md](docs/infrastructure/AKASH-DEPLOYME
 - 10-year storage deals
 - 20+ miners with cryptographic proofs
 - Renewable indefinitely
-- Cost: ~$1.28/decade for all Genesis content
+- Long-term storage via cryptographic proofs
 
 ---
 
@@ -421,15 +421,13 @@ The protocol is complete and runs autonomously.
 - Scarcity (sealed supply)
 - Authenticity (human-created in AI age)
 
-### 10.3 Infrastructure Costs
+### 10.3 Infrastructure Sustainability
 
-**100-year commitment:**
-- IPFS Cluster: ~$288k
-- Filecoin deals: ~$1.3k
-- Monitoring: ~$7k
-- **Total:** ~$296k
-
-**Per Genesis NFT (~10k):** ~$30/century/NFT
+**Long-term approach:**
+- IPFS Cluster (shared infrastructure)
+- Filecoin storage deals
+- Distributed monitoring
+- Multi-capsule resource sharing
 
 **Sustainable. Permanent. Trustless.**
 

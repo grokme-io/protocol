@@ -240,7 +240,6 @@ Total energy: 100W × 100 years × 8760 h/year
             = 87,600,000 Wh
             = 87.6 MWh
 
-Cost: ~$8,760 (at $0.10/kWh)
 Entropy produced: Continuous heat dissipation
 ```
 
@@ -250,11 +249,10 @@ Initial: GROK burn (one-time economic energy)
 Ongoing: Ethereum network (already running, marginal cost ≈ 0)
 IPFS nodes: Minimal power (shared infrastructure)
 
-Total 100-year cost: ~$1,000 (IPFS maintenance only)
 Entropy reduction: Information organized permanently
 ```
 
-**Efficiency improvement: 87.6× energy savings**
+**Significant energy efficiency improvement through one-time burn mechanism**
 
 ---
 

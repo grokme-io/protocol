@@ -306,18 +306,15 @@ Your unique identity:
 
 **Option A: Commercial Service**
 - Pinata, NFT.Storage, Infura
-- Easy setup, paid service
-- Cost: $20-100/month
+- Easy setup, managed service
 
 **Option B: IPFS Cluster**
 - Self-hosted, full control
 - Use templates from `/infrastructure/ipfs-cluster/`
-- Cost: $30-50/month per node
 
 **Option C: Akash Deployment**
 - Decentralized hosting
 - Use templates from `/infrastructure/akash/`
-- Cost: $15-30/month per node
 
 **Recommendation:** Start with commercial, migrate to cluster post-seal.
 
@@ -362,7 +359,7 @@ async function onMinted(event: GrokkedEvent) {
 **How to fund your capsule?**
 
 **Option A: Personal Investment**
-- Infrastructure costs (~$500-1000/month)
+- Infrastructure maintenance
 - Dev time (volunteer or funded separately)
 - Marketing (community-driven)
 

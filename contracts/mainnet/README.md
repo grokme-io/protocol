@@ -400,17 +400,17 @@ Contract operates autonomously. No human intervention possible.
 
 ### Gas Optimization
 
-**Estimated costs (30 gwei):**
+**Gas usage estimates:**
 
-| Operation | Gas | Cost (ETH) | Cost (USD @ $2000/ETH) |
-|-----------|-----|------------|------------------------|
-| Approve GROK | ~50,000 | 0.0015 | ~$3 |
-| Single mint | ~180,000 | 0.0054 | ~$11 |
-| Batch mint (10) | ~900,000 | 0.027 | ~$54 |
-| **Total single** | ~230,000 | 0.0069 | ~$14 |
+| Operation | Gas Estimate |
+|-----------|--------------|
+| Approve GROK | ~50,000 |
+| Single mint | ~180,000 |
+| Batch mint (10) | ~900,000 |
+| **Total single** | ~230,000 |
 
 **Optimization strategies:**
-- Batch minting reduces per-NFT cost
+- Batch minting reduces per-NFT gas usage
 - Infinite approval (once per user)
 - View functions are free (off-chain)
 

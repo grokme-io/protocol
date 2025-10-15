@@ -91,14 +91,6 @@ akash tx market lease create --dseq <seq> --provider <provider>
 akash provider lease-logs --dseq <seq> --provider <provider>
 ```
 
-## Cost Estimates
-
-| Infrastructure | Provider | Monthly Cost |
-|----------------|----------|--------------|
-| IPFS Cluster (3 nodes) | Self-hosted | $240 |
-| IPFS Cluster (3 nodes) | Akash | $90-120 |
-| Monitoring stack | Self-hosted | $40 |
-| Monitoring stack | Akash | $15-20 |
 
 **Akash savings:** ~60-70% vs. traditional hosting
 

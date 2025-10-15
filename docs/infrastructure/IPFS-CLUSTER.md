@@ -348,60 +348,13 @@ async function monitorClusterHealth() {
 
 ---
 
-## Cost Analysis
+## Infrastructure Approach
 
-### Node Specifications
+### Shared Cluster Infrastructure
 
-**Typical cluster node:**
-```
-Provider: Hetzner / AWS / Akash
-CPU: 4 cores
-RAM: 8 GB
-Storage: 500 GB SSD
-Network: 1 Gbit/s
-Cost: $60-100/month per node
-```
+Multiple capsules share same IPFS Cluster nodes for improved efficiency and sustainability.
 
-### Genesis Capsule Economics
-
-**Storage requirements:**
-- Genesis: 6.9 GB
-- Replication: 3x minimum
-- Total: ~21 GB distributed
-
-**Cost for Genesis (3 nodes):**
-```
-3 nodes × $80/month = $240/month
-
-100-year cost: $240 × 12 × 100 = $288,000
-```
-
-**With multi-protocol usage** (sharing infrastructure):
-```
-Genesis (6.9 GB) + Future capsules + Whitelabel projects
-= Shared infrastructure cost
-
-Effective cost per capsule: Significantly reduced
-```
-
-### vs. Traditional Storage
-
-**AWS S3 + CloudFront (100 years):**
-```
-Storage: $0.023/GB/month × 7GB × 1200 months = $193
-Transfer: $0.085/GB × 100GB/month × 1200 months = $10,200
-Total: ~$10,400
-```
-
-**IPFS Cluster (100 years):**
-```
-Nodes: $240/month × 1200 months = $288,000
-
-BUT: Serves ALL capsules + multi-protocol usage
-Effective per-capsule: ~$10,000 (shared infrastructure)
-```
-
-**Advantage:**
+**Advantages:**
 - Full control (no vendor lock-in)
 - Censorship-resistant
 - Multi-protocol usage
@@ -510,7 +463,6 @@ Can store content but cannot modify pinset.
 | **Redundancy** | 3-5x automatic | Provider-dependent | Contract-based | Manual |
 | **Self-healing** | ✅ Yes | ✅ Yes | ⚠️ Manual renewal | ❌ No |
 | **Geographic** | ✅ Full control | ⚠️ Limited | ✅ Configurable | ✅ Full control |
-| **Cost (100yr)** | ~$288k shared | ~$24k single | ~$1.3k | ~$100k |
 | **Censorship resistance** | ✅ High | ⚠️ Moderate | ✅ High | ✅ High |
 | **Control** | ✅ Full | ❌ None | ⚠️ Contract | ✅ Full |
 | **Complexity** | ⚠️ Moderate | ✅ Easy | ⚠️ Moderate | ⚠️ High |

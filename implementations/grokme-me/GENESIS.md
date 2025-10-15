@@ -261,11 +261,9 @@ Genesis establishes proof of concept:
 - 20 miners × 10-year contracts
 - Cryptographic storage proofs
 - Renewable indefinitely
-- Cost: ~$1.28/decade for all content
+- Long-term storage via cryptographic proofs
 
-**Total 100-year infrastructure cost:** ~$1,600
-
-**Cost per NFT per century:** ~$0.16
+**Sustainable infrastructure approach for multi-century preservation.**
 
 ---
 
