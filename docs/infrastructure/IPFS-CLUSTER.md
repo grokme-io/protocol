@@ -162,17 +162,19 @@ P(unavailable) = (1 - p)^R
                = (1 - 0.99)^3
                = (0.01)^3
                = 0.000001
+               = 1 in 1,000,000 chance
 ```
 
 **Availability:**
 ```
-A = 1 - P(unavailable)
-  = 1 - 0.000001
-  = 0.999999
-  = 99.9999%
+With 3 nodes across continents:
+All 3 must fail simultaneously = (0.01)^3
+
+Practical reality:
+Requires coordinated multi-continent infrastructure collapse.
 ```
 
-**Six nines reliability.**
+**Fails only if civilization ends.**
 
 ### Geographic Distribution Advantage
 
@@ -521,9 +523,9 @@ Can store content but cannot modify pinset.
 
 IPFS Cluster provides:
 
-✅ **Mathematical availability** (99.9999%)  
+✅ **Civilization-grade resilience** (multi-continent redundancy)  
 ✅ **Self-healing** (automatic recovery)  
-✅ **Geographic distribution** (multi-continent)  
+✅ **Geographic distribution** (survives regional collapse)  
 ✅ **Scalability** (millions of pins)  
 ✅ **No single point of failure** (distributed consensus)  
 ✅ **Battle-tested** (nft.storage, web3.storage)  
@@ -531,7 +533,7 @@ IPFS Cluster provides:
 
 **For GROKME Protocol:**
 
-This is not just storage. This is **eternal preservation infrastructure**.
+Content survives unless civilization ends. **That's the standard.**
 
 ---
 

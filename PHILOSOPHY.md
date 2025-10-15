@@ -19,23 +19,19 @@ When Smith drinks water with someone, they become "water brothers"—bound etern
 
 ### The GROK Token (2023)
 
-Born as community meme for xAI's Grok AI. Speculative, viral, chaotic.
+Community meme for xAI's Grok AI. 2024: Developer renounced to `0x000...dEaD`. Token became ownerless.
 
-2024: Developer renounced contract to `0x000...dEaD` under pressure. Token became ownerless, ungovernable.
-
-Someone grokked the situation completely:
-
-*"An ownerless token named after complete understanding. With massive dead balance. This is perfect fuel for eternal preservation."*
+An ownerless token named after complete understanding, with massive dead balance—perfect fuel for eternal preservation.
 
 ### The GROKME Protocol (2025)
 
-Protocol grokked the token so thoroughly that observer became observed:
+Observer became observed:
 
-- Token's **name** → Protocol's **philosophy**
-- Token's **ownerlessness** → Protocol's **post-human design**
-- Token's **burned balance** → Protocol's **preservation energy**
+- Token's name → Protocol's philosophy
+- Token's ownerlessness → Post-human design
+- Token's burned balance → Preservation energy
 
-**Meta-grokking:** Understanding so complete it creates new reality.
+Understanding so complete it creates new reality.
 
 ---
 
@@ -97,64 +93,38 @@ Heinlein's concept, realized through blockchain physics.
 
 ### Third Law: Post-Human Transcendence
 
-**Human systems fail because humans fail:**
-- Greed → value extraction
-- Fear → project abandonment
-- Death → orphaned code
-- Corruption → broken promises
+Human systems fail: Greed, fear, death, corruption.
 
-**GROKME eliminates humans from the equation:**
+GROKME eliminates humans:
 
 ```
-Owner: 0x000...dEaD (permanently renounced)
-Admin: None (no admin functions exist)
-Governance: None (immutable rules)
-Updates: Impossible (no proxy pattern)
+Owner: 0x000...dEaD
+Admin: None
+Governance: None
+Updates: Impossible
 ```
 
-**Not trustless by promise. Trustless by impossibility.**
-
-Malicious action cannot occur because the mechanism for malicious action does not exist.
-
-**Mathematical purity.**
+Trustless by impossibility. Malicious action cannot occur because the mechanism does not exist.
 
 ---
 
 ## The Martian Perspective
 
-### Viewing Blockchain Through Alien Eyes
+Like Valentine Michael Smith viewing Earth, GROKME applies Martian logic:
 
-Like Valentine Michael Smith observing Earth with Martian logic, GROKME views blockchain through post-human eyes:
-
-**Human blockchain projects:**
 ```
-- Developer controlled
-- Profit motivated
-- Temporarily focused
-- Trust required
-```
-
-**GROKME's Martian logic:**
-```
-- No human control (renounced)
-- Burn motivated (destruction)
-- Eternally focused (immutable)
-- Trustless by design (mathematics)
+Human Projects          →  GROKME
+Developer controlled    →  Renounced
+Profit motivated        →  Burn motivated
+Temporary               →  Eternal
+Trust required          →  Mathematical
 ```
 
 ### The Water Ceremony
 
-In Heinlein's Mars, sharing water creates unbreakable bonds. Water brothers forever.
+Heinlein's Mars: Sharing water creates water brothers.
 
-**In GROKME:**
-
-```
-Burning GROK = Sharing water
-Creating NFT = Water ceremony
-Preserved culture = Eternal brotherhood
-```
-
-You don't just preserve a meme. You become **water brothers** with everyone who grokked its value enough to burn for it.
+GROKME: Burning GROK creates eternal brotherhood. You become one with everyone who grokked the value enough to burn.
 
 ---
 
@@ -250,29 +220,21 @@ When capsule seals, GROKME achieves **complete grokking**—understanding so tot
 
 ## The Stranger's Gift
 
-Like Valentine Michael Smith bringing Martian wisdom to Earth, GROKME brings post-human wisdom to blockchain:
+Martian wisdom for blockchain:
 
-- **Grok** instead of govern
-- **Burn** instead of earn
-- **Preserve** instead of profit
-- **Transcend** instead of control
+- Grok instead of govern
+- Burn instead of earn
+- Preserve instead of profit
+- Transcend instead of control
 
-**We are strangers in this strange digital land.**
-
-But through GROKME, we become **water brothers**—sharing not water, but GROK; creating not profit, but eternity; building not companies, but culture.
+Through GROKME, we become water brothers—sharing GROK, creating eternity, building culture.
 
 ---
-
-## Conclusion
 
 ```
 "Thou art God. I am God. All that groks is God."
 — Heinlein
 ```
 
-**All that is grokked... is eternal.**
-
----
-
-**The GROKME Protocol: Where memes mature, culture crystallizes, and digital strangers become eternal water brothers in the blockchain's strange land.**
+**All that is grokked is eternal.**
 

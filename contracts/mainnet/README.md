@@ -21,7 +21,9 @@
 Name: Grok
 Symbol: GROK
 Decimals: 9
-Total Supply: 6,900,000,000 GROK (fixed, no minting)
+Initial Supply: 6,900,000,000 GROK (decreasing through burns)
+Current Supply: See Etherscan (live tracking)
+Minting: Disabled (no new tokens possible)
 Owner: 0x000000000000000000000000000000000000dEaD
 ```
 
@@ -132,12 +134,18 @@ function totalSupply() external view returns (uint256)
 
 ## GrokMeGenesis Contract
 
-### The First Capsule
+### Reference Implementation
 
+**Purpose:** Full-featured example showing all baukasten modules  
+**Implementation:** GROKME GENESIS (grokme.me)  
 **Address:** [To be deployed]  
 **Network:** Ethereum Mainnet  
 **Standard:** ERC-721 (NFT)  
 **Status:** Audit in progress
+
+**This is ONE implementation, not THE protocol.**
+
+For modular assembly, see [`/contracts/templates/`](../templates/)
 
 ### Architecture
 
@@ -320,7 +328,7 @@ Contract operates autonomously. No human intervention possible.
 ### Pre-Deployment
 
 - [ ] Complete security audit
-- [ ] Community review period (2 weeks minimum)
+- [ ] Public review period (2 weeks minimum)
 - [ ] Testnet deployment + testing (>100 test mints)
 - [ ] Oracle infrastructure operational
 - [ ] IPFS Cluster ready

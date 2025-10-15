@@ -10,9 +10,7 @@
 
 ## Abstract
 
-GROKME is an open protocol for transforming cultural content into eternal digital artifacts through cryptographic proof and economic sacrifice.
-
-**Not a project. Not a platform. A mathematical standard.**
+Open protocol for transforming cultural content into eternal digital artifacts through cryptographic proof and economic sacrifice.
 
 ---
 
@@ -63,8 +61,8 @@ Protocol Layer (Universal Standard)
 
 Capsule Layer (Implementations)
 ├── GROKME GENESIS (6.9 GB, memes)
-├── Future Capsules (TBD, community-decided)
-└── Whitelabel Capsules (open implementations)
+├── Future Capsules (anyone can launch)
+└── Whitelabel Capsules (permissionless)
 ```
 
 ### 2.2 The GROK Token
@@ -77,7 +75,8 @@ Capsule Layer (Implementations)
 - 2025: Recognized as perfect preservation energy
 
 **Properties:**
-- Supply: 6,900,000,000 GROK
+- Initial Supply: 6,900,000,000 GROK (decreasing through burns)
+- Current Supply: Check [Etherscan](https://etherscan.io/token/0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5) (live)
 - Owner: 0x000...dEaD (ownerless)
 - Decimals: 9 (fine-grained burning)
 - Standard: ERC-20 (maximum compatibility)
@@ -382,25 +381,15 @@ Not competitive—collaborative.
 
 ---
 
-## 9. Roadmap
+## 9. Status
 
-**There is no roadmap.**
+The protocol is complete and runs autonomously.
 
-The protocol is complete. It runs autonomously. Forever.
-
-**What exists:**
+**Available:**
 - ✅ Smart contracts (written, audited)
 - ✅ Mathematical proofs (verified)
 - ✅ Infrastructure design (documented)
 - ✅ Implementation guides (published)
-
-**What doesn't exist:**
-- ❌ Team to develop features
-- ❌ DAO to govern decisions
-- ❌ Roadmap to promise future
-- ❌ Token to invest in
-
-**This is infrastructure, not a startup.**
 
 ---
 
@@ -476,20 +465,6 @@ The protocol is complete. It runs autonomously. Forever.
 
 ---
 
-## 13. Conclusion
-
-```
-Traditional Systems:     GROKME Protocol:
-"Trust us"           →  "Trust math"
-"We're building"     →  "Already complete"
-"Join community"     →  "Use protocol"
-"Invest in vision"   →  "Verify code"
-```
-
-**This is not a whitepaper promising a future.**
-
-**This is documentation of a system that already exists and runs autonomously forever.**
-
 ---
 
 ## 14. References
@@ -512,14 +487,18 @@ Traditional Systems:     GROKME Protocol:
 
 ---
 
-**The mathematics of cultural immortality.**
-
 **Built with pure mathematical permanence.** 🔥
-
----
 
 **Version:** 1.0  
 **Last Updated:** January 2025  
 **Status:** Production Ready  
 **License:** MIT
+
+---
+
+## Links
+
+**Website:** [grokme.io](https://grokme.io) (Njalla → Akash → Ungovernable)  
+**GitHub:** [github.com/grokme-io/protocol](https://github.com/grokme-io/protocol)  
+**First Implementation:** [grokme.me](https://grokme.me) (GROKME GENESIS)
 

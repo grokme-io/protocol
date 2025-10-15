@@ -2,8 +2,9 @@
 
 ## The First Capsule
 
+**Implementation:** grokme.me  
 **Status:** First implementation of GROKME Protocol  
-**Launch:** 2025  
+**Submitted:** January 2025  
 **Network:** Ethereum Mainnet  
 **Capacity:** 6,900,000,000 bytes (6.9 GB)
 
@@ -71,6 +72,13 @@ Based on **total GROK burned:**
 **Standard:** ERC-721 (NFT)  
 **Owner:** 0x000...dEaD (renounced at launch)  
 **Upgradeable:** No (immutable)
+
+**Modules Used:**
+- ✅ Variable Burn Rates (1-1000 GROK/KB)
+- ✅ Oracle System (EIP-712 signed IDs)
+- ✅ Batch Minting
+- ✅ Burn TX Tracking
+- ❌ Custom Metadata (minimal implementation)
 
 **Core Functions:**
 ```solidity
@@ -276,6 +284,7 @@ Genesis establishes proof of concept:
 - Capacity (larger/smaller)
 - Theme/focus (specific communities)
 - Burn rate ranges (different economics)
+- Module selection (from baukasten)
 - Additional features (while maintaining core principles)
 
 ### What Remains Immutable
@@ -292,11 +301,12 @@ Genesis establishes proof of concept:
 
 ### For Creators
 
-1. Connect wallet (Ethereum Mainnet)
-2. Upload content to IPFS
-3. Choose burn rate (1-1000 GROK/KB)
-4. Approve GROK for burning
-5. Mint NFT (permanent preservation)
+1. Visit [grokme.me](https://grokme.me)
+2. Connect wallet (Ethereum Mainnet)
+3. Upload content to IPFS
+4. Choose burn rate (1-1000 GROK/KB)
+5. Approve GROK for burning
+6. Mint NFT (permanent preservation)
 
 **Cost:** Depends on file size and chosen burn rate  
 **Result:** Eternal cultural artifact
@@ -323,12 +333,13 @@ Genesis establishes proof of concept:
 
 ## Technical Details
 
-See main repository documentation:
+**Protocol Repository:** [github.com/grokme-io/protocol](https://github.com/grokme-io/protocol)
 
-- Smart contract: `/contracts/mainnet/GrokMeGenesis.sol`
-- Integration guide: `/docs/implementation/INTEGRATION-GUIDE.md`
-- API reference: `/docs/implementation/API-REFERENCE.md`
-- Security model: `/docs/security/SECURITY-MODEL.md`
+**Implementation Specific:**
+- Smart contract: See submission metadata
+- Frontend: [grokme.me](https://grokme.me)
+- Oracle: Operated by grokme.me team
+- IPFS: Multi-layer strategy (commercial + cluster + Filecoin)
 
 ---
 
@@ -352,9 +363,9 @@ Not because we say so. Because mathematics says so.
 ---
 
 **Launch:** 2025  
-**Status:** Implementation in progress  
-**Contract:** To be deployed post-audit  
-**Community:** Open to all
+**Implementation:** grokme.me  
+**Status:** Submitted to GROKME Protocol Registry  
+**Contract:** To be deployed post-audit
 
 **The first capsule. The proof. The Genesis.**
 

@@ -6,27 +6,7 @@
 [![Contracts](https://img.shields.io/badge/Contracts-Verified-green.svg)](https://etherscan.io/address/0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5)
 [![Status](https://img.shields.io/badge/Status-Post--Human-blue.svg)](#)
 
-> **This is not a project. This is a protocol.**  
-> Like HTTP or TCP/IP, anyone can implement it. No permission. No licensing. Pure mathematics.
-
----
-
-## Protocol vs. Capsules
-
-**GROKME Protocol** = Universal framework (the guardian)  
-**Capsules** = Specific implementations (the vessels)
-
-```
-Protocol (永)           →  Capsules (sealed containers)
-├─ Burn mechanics           ├─ GROKME GENESIS (6.9 GB, 2025)
-├─ Self-sealing logic       ├─ Future capsules (TBD)
-├─ Zero extraction          └─ Whitelabel capsules
-├─ IPFS storage
-└─ Rarity system
-```
-
-**This repository documents the PROTOCOL.**  
-For Genesis capsule specifics, see [GENESIS.md](GENESIS.md).
+Open standard for eternal cultural preservation. Anyone can implement. No permission. Pure mathematics.
 
 ---
 
@@ -95,32 +75,32 @@ Cultural Content + GROK Energy = Sealed Capsule → Eternal Artifact
 ### 6. **Implementation Guides** ([docs/](docs/))
 - Integration tutorial
 - Whitelabel guide
-- API reference
+- GROKME Certified verification
+- Contract templates (baukasten)
 - Example code
 
 ---
 
 ## For Different Audiences
 
+### 🎨 **Creators & Artists**
+Preserve your work → Visit [grokme.me](https://grokme.me) or check [`/implementations/`](implementations/)
+
 ### 👨‍💻 **Developers**
-Want to integrate GROKME into your project?
-→ Start with [`/docs/implementation/INTEGRATION-GUIDE.md`](docs/implementation/INTEGRATION-GUIDE.md)
-
-### 🧙 **Philosophers**
-Interested in the conceptual foundation?
-→ Read [`PHILOSOPHY.md`](PHILOSOPHY.md)
-
-### 🔬 **Mathematicians**
-Want to see the proofs?
-→ See [`MATHEMATICS.md`](MATHEMATICS.md)
+Integrate GROKME → [`/docs/implementation/INTEGRATION-GUIDE.md`](docs/implementation/INTEGRATION-GUIDE.md)
 
 ### 🏗️ **Implementers**
-Want to launch your own instance?
-→ Check [`/examples/whitelabel-template/`](examples/whitelabel-template/)
+Build your platform → [`/docs/implementation/WHITELABEL-GUIDE.md`](docs/implementation/WHITELABEL-GUIDE.md) + [`/contracts/templates/`](contracts/templates/)  
+Get certified → [`/docs/implementation/CERTIFICATION.md`](docs/implementation/CERTIFICATION.md)
+
+### 🧙 **Philosophers**
+Conceptual foundation → [`PHILOSOPHY.md`](PHILOSOPHY.md)
+
+### 🔬 **Mathematicians**
+Mathematical proofs → [`MATHEMATICS.md`](MATHEMATICS.md)
 
 ### 🛡️ **Security Researchers**
-Want to audit the system?
-→ Review [`/docs/security/`](docs/security/)
+Audit the system → [`/docs/security/`](docs/security/) + [`/contracts/mainnet/GrokMeGenesis.sol`](contracts/mainnet/GrokMeGenesis.sol)
 
 ---
 
@@ -133,7 +113,8 @@ Want to audit the system?
 - **Origin:** Community meme token (2023)
 - **Renounced:** Contract sent to `0x000...dEaD` (2024)
 - **Purpose:** Universal energy for cultural preservation
-- **Supply:** 6,900,000,000 GROK (9 decimals)
+- **Initial Supply:** 6,900,000,000 GROK (decreasing through burns)
+- **Decimals:** 9
 - **Philosophy:** From Heinlein's "Stranger in a Strange Land" (1961)
 
 ### The Burn Mechanism
@@ -158,7 +139,7 @@ When capacity reached:
 → True digital immortality
 ```
 
-**Each capsule sets its own capacity.** Genesis: 6.9 GB. Future capsules: community-decided.
+**Each capsule sets its own capacity.** Genesis: 6.9 GB. Your capsule: you decide.
 
 ### The Rarity System
 
@@ -211,7 +192,7 @@ Based on [ipfscluster.io](https://ipfscluster.io/) - the same technology powerin
 - **Automatic replication** across multiple nodes
 - **Geographic distribution** (multi-continent)
 - **Self-healing** on node failures
-- **99.9999% availability** (six nines)
+- **Multi-continent redundancy** (fails only if civilization ends)
 
 See [`docs/infrastructure/IPFS-CLUSTER.md`](docs/infrastructure/IPFS-CLUSTER.md)
 
@@ -261,18 +242,22 @@ await genesis.grokMeWithSignedId(
 
 See [`/examples/basic-integration/`](examples/basic-integration/) for complete examples.
 
-### Whitelabel Implementation
+### Build Your Own Implementation
 
-Want to launch your own cultural preservation platform?
+Launch your own cultural preservation platform:
 
-1. Deploy GrokMeGenesis contract with your parameters
-2. Build frontend with your branding
-3. Set up IPFS infrastructure
-4. Launch to your community
+1. Build contract using protocol templates ([`/contracts/templates/`](contracts/templates/))
+2. Deploy & verify on Ethereum Mainnet
+3. Build frontend with your branding
+4. Set up IPFS infrastructure
+5. Get GROKME Certified badge (automatic verification)
 
-**No permission needed. No licensing required. No fees to pay.**
+**No permission. No registration. No fees.**
 
-See [`/docs/implementation/WHITELABEL-GUIDE.md`](docs/implementation/WHITELABEL-GUIDE.md)
+Guides:
+- [`/docs/implementation/WHITELABEL-GUIDE.md`](docs/implementation/WHITELABEL-GUIDE.md)
+- [`/docs/implementation/CERTIFICATION.md`](docs/implementation/CERTIFICATION.md)
+- [`/contracts/templates/README.md`](contracts/templates/README.md)
 
 ---
 
@@ -337,7 +322,7 @@ See [`PHILOSOPHY.md`](PHILOSOPHY.md) for the complete manifesto.
 ### Audits
 
 - [ ] Security audit by [TBD] (scheduled)
-- [ ] Community review period (ongoing)
+- [ ] Public review period (GitHub, ongoing)
 - [ ] Bug bounty program (planned)
 
 ### Verified Contracts
@@ -364,53 +349,53 @@ See [`/docs/security/SECURITY-MODEL.md`](docs/security/SECURITY-MODEL.md)
 
 ---
 
-## Roadmap
+## Status
 
-**There is no roadmap.**
+The protocol is complete. It runs autonomously.
 
-The protocol is complete. It runs autonomously. Forever.
-
-**What exists:**
+**Available now:**
 - ✅ Smart contracts (written, tested)
 - ✅ Mathematical proofs (verified)
 - ✅ Infrastructure design (documented)
 - ✅ Implementation guides (published)
 
-**What doesn't exist:**
-- ❌ Team to "develop" features
-- ❌ DAO to "govern" decisions
-- ❌ Roadmap to "promise" future
-- ❌ Token to "invest" in
-
-This is not a startup. This is infrastructure.
-
 ---
 
-## Community
+## Open Source Collaboration
 
 ### How to Contribute
 
-This is an open protocol. Contributions welcome:
+**Code & Documentation:**
+- Fork repository
+- Make improvements
+- Submit PR
+- Open review (GitHub)
+- Technical consensus → Merge
 
-1. **Code:** Submit PRs for documentation improvements
-2. **Ideas:** Open issues for clarifications
-3. **Implementations:** Build on top of the protocol
-4. **Audits:** Review security model
-5. **Philosophy:** Discuss conceptual foundations
+**No central authority. Pure open source.**
 
-### Communication Channels
+### Communication
 
 **Technical:**
-- GitHub Issues (primary)
+- GitHub Issues
 - GitHub Discussions
-- Documentation wiki
+- Pull Requests
 
 **Implementation Help:**
-- See `/docs/implementation/`
-- Review example code
-- Study existing deployments
+- Read `/docs/implementation/`
+- Study example code
+- Ask on GitHub Discussions
 
-**No official social media.** Protocols don't have Twitter accounts.
+**Development Services:**
+- Protocol provides templates & documentation (free)
+- Independent developers available: mail@grokme.io
+- Paid services, separate from protocol
+
+**No social media.**  
+**No Discord.**  
+**No Telegram.**
+
+Protocols are code, not communities.
 
 ---
 
@@ -436,7 +421,14 @@ Before using ANY implementation:
 
 ---
 
-## References
+## Links
+
+### Official
+- **Protocol Website:** [grokme.io](https://grokme.io)
+- **GitHub Repository:** [github.com/grokme-io/protocol](https://github.com/grokme-io/protocol)
+- **Certification:** [grokme.io/verify](https://grokme.io/verify)
+- **First Implementation:** [grokme.me](https://grokme.me) (GROKME GENESIS)
+- **Development Support:** mail@grokme.io (paid services, independent contractors)
 
 ### Technical Standards
 - ERC-721: [EIP-721](https://eips.ethereum.org/EIPS/eip-721)
@@ -453,24 +445,6 @@ Before using ANY implementation:
 ### Smart Contracts
 - GROK Token: [0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5](https://etherscan.io/address/0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5)
 - GrokMeGenesis: [To be deployed]
-
----
-
-## Final Words
-
-```
-Traditional Systems:           GROKME Protocol:
-"Trust us"                  →  "Trust math"
-"We're building"            →  "Already complete"
-"Join our community"        →  "Use the protocol"
-"Invest in our vision"      →  "Verify the code"
-```
-
-**This is not a project. This is a protocol.**
-
-**This is not a promise. This is a proof.**
-
-**This is not temporary. This is eternal.**
 
 ---
 

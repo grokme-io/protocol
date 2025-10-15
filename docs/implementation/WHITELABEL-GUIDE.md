@@ -8,15 +8,16 @@ This guide shows how to deploy your own capsule using the GROKME Protocol.
 
 ## What You Can Build
 
-**GROKME Protocol** = Universal standard (burn mechanics, sealing, etc.)  
-**Your Capsule** = Specific implementation (capacity, theme, branding)
+Build your own cultural preservation platform using GROKME Protocol standards.
 
 **Examples:**
 - Art preservation platform
 - Gaming moments archive
 - Music culture capsule
 - Historical documents vault
-- Community-specific memes
+- Community-specific archive
+
+**Important:** GrokMeGenesis is the dedicated contract for grokme.me (meme preservation). You build YOUR OWN contract using the protocol templates.
 
 ---
 
@@ -66,38 +67,66 @@ uint256 public constant MAX_BURN_RATE_PER_KB = 500;  // Lower ceiling
 
 ---
 
-## Step 2: Contract Customization
+## Step 2: Build Your Contract
 
-### 2.1 Base Contract
+### 2.1 Use Protocol Templates
 
-Start with GrokMeGenesis.sol as template:
+GROKME Protocol provides contract templates in [`/contracts/templates/`](../../contracts/templates/):
+
+**Required Core Modules:**
+- Core Burn Mechanism (100% to 0x000...dEaD)
+- Self-Sealing Logic (capacity-based finality)
+- Post-Human Design (renounced ownership)
+
+**Optional Enhancement Modules:**
+- Variable Burn Rates
+- Oracle System (anti-front-running)
+- Batch Minting
+- Burn TX Tracking
+- Custom Metadata
+
+See [`/contracts/templates/README.md`](../../contracts/templates/README.md) for complete baukasten documentation.
+
+### 2.2 Build Your Contract
+
+Assemble your own contract from protocol modules:
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+import "./modules/CoreBurn.sol";
+import "./modules/SelfSealing.sol";
+import "./modules/VariableBurnRates.sol";
 
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
-import "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
-
-contract YourCapsuleName is ERC721URIStorage, ReentrancyGuard, Ownable, EIP712 {
-    // Customize these constants for your capsule
-    uint256 public constant MAX_CAPACITY_BYTES = 10_000_000_000;
-    uint256 public constant MIN_BURN_RATE_PER_KB = 10;
-    uint256 public constant MAX_BURN_RATE_PER_KB = 500;
-    
-    // GROK integration (same for all capsules)
-    address public constant GROK_TOKEN_ADDRESS = 0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5;
-    address public constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
-    uint256 public constant GROK_DECIMALS = 10**9;
-    
-    // ... rest of implementation
+contract YourCapsule is 
+    ERC721URIStorage,
+    CoreBurn,
+    SelfSealing,
+    VariableBurnRates 
+{
+    constructor(address _oracle) 
+        ERC721("YOUR CAPSULE", "SYMBOL")
+    {
+        // Initialize modules
+    }
 }
 ```
 
-### 2.2 Name & Symbol
+**You handle:**
+- Module selection
+- Contract assembly
+- Deployment (Sepolia + Mainnet)
+- Etherscan verification
+- Ownership renouncement
+
+**Protocol provides:**
+- Open source templates (free)
+- Documentation (free)
+- Automatic verification (free)
+- GROKME Certified badge (free)
+- Community support (GitHub)
+
+**No permission. No registration. No fees.**
+
+### 2.4 Name & Symbol
 
 ```solidity
 constructor(address _oracle) 
@@ -108,7 +137,7 @@ constructor(address _oracle)
 }
 ```
 
-### 2.3 Optional Features
+### 2.5 Module Selection
 
 **Feature Matrix:**
 
@@ -516,20 +545,33 @@ Your capsule burns GROK → Benefits entire ecosystem:
 
 ## Support
 
-**Resources:**
-- Contract templates: `/contracts/mainnet/`
+### Protocol Resources (Free)
+
+- Contract templates: `/contracts/templates/`
 - Infrastructure: `/infrastructure/`
 - Integration guide: `./INTEGRATION-GUIDE.md`
 - Security model: `../security/SECURITY-MODEL.md`
-
-**Community:**
 - GitHub Discussions
-- Protocol documentation
-- Other implementations (learn from)
+- Community documentation
+
+### Development Assistance (Paid)
+
+**Important:** The protocol does not provide development services.
+
+Independent developers are available who can help with:
+- ✅ Contract development & assembly
+- ✅ Implementation architecture
+- ✅ Ensuring certification compliance
+- ✅ Infrastructure setup
+- ✅ Launch support
+
+**Contact:** mail@grokme.io
+
+**Note:** These are independent contractors, not protocol team. Services are paid separately.
 
 ---
 
 **Launch your capsule. Preserve your culture. Join the protocol.**
 
-**No permission needed. No fees required. Pure mathematics.**
+**No permission needed. Pure mathematics.**
 
