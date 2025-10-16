@@ -12,9 +12,6 @@ implementations/
 │   ├── GENESIS.md          Full documentation
 │   └── metadata.json       Structured data
 │
-├── coming-soon/            In development
-│   └── README.md
-│
 ├── your-project/           Your submission
 │   ├── CAPSULE.md          Your documentation
 │   └── metadata.json       Your data

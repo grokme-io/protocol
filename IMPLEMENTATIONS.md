@@ -60,13 +60,13 @@ Each contains:
 
 ---
 
-## In Development
+## Future Capsules
 
-### 2. Coming Soon
+**Status:** More to come  
+**Timeline:** TBD
 
-**Directory:** [`/implementations/coming-soon/`](implementations/coming-soon/)  
-**Status:** 🟡 IN DEVELOPMENT  
-**Details:** To be announced
+The protocol scales. Anyone can build new capsules following the open standard.
+Community-driven expansion.
 
 ---
 
@@ -162,8 +162,8 @@ Removed if: Protocol violation, misrepresentation, or malicious behavior detecte
 
 ## Statistics
 
-**Total Implementations:** 1 (+ 1 in development)  
-**Total Capacity:** 6.9 GB (Genesis only)  
+**Active Implementations:** 1 (GENESIS)  
+**Total Capacity:** 6.9 GB (growing as new capsules launch)  
 **Total GROK Burned:** [Tracked live via chain]  
 **Last Updated:** October 2025
 
