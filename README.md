@@ -104,6 +104,62 @@ Audit the system → [`/docs/security/`](docs/security/) + [`/contracts/mainnet/
 
 ---
 
+## The Capsule Ecosystem
+
+**Think of GROKME capsules like domain extensions:**
+
+| Domain Extension | Purpose | GROKME Capsule | Purpose |
+|-----------------|---------|----------------|---------|
+| .com | Commerce | GROKME UNIVERSAL | All content |
+| .art | Artists | GROKME ART | Visual art |
+| .music | Musicians | GROKME MUSIC | Audio |
+| .game | Gaming | GROKME GAMING | Game assets |
+
+**Every project picks the capsule that fits their culture.**
+
+### Official Templates (Q1 2026)
+
+Pre-built, audited, renounced contracts:
+- **GROKME GENESIS** (memes) - Live Nov 1st, 2025
+- **GROKME UNIVERSAL** (all content) - Q1 2026
+- **GROKME ART** (visual art) - Q1 2026
+- **GROKME MUSIC** (audio) - Q1 2026
+- **GROKME GAMING** (game assets) - Q1 2026
+- **GROKME LITERATURE** (writing) - Q1 2026
+
+**All automatically verified. All free to use. All burn GROK.**
+
+See: [ROADMAP.md](ROADMAP.md)
+
+### Automatic Verification
+
+Every capsule is checked against protocol criteria:
+
+✅ **100% GROK burn** to `0x000...dEaD`  
+✅ **Owner renounced** to `0x000...dEaD`  
+✅ **Zero extraction** (no fees)
+
+Pass → Auto-certified. Fail → Rejected.
+
+**Verification Dashboard:** `grokme.io/verify` (Coming Q1 2026)  
+**Public Registry:** `grokme.io/registry` (Coming Q1 2026)
+
+See: [GOVERNANCE.md](GOVERNANCE.md) · [REGISTRY.md](REGISTRY.md)
+
+### Network Effect
+
+All verified capsules burn GROK:
+- Your project uses GROKME ART
+- Another uses GROKME MUSIC
+- Another uses GROKME GAMING
+
+**Every burn reduces total supply.**  
+**All GROK holders benefit.**
+
+Not competitive. Collaborative.
+
+---
+
 ## Core Concepts
 
 ### The GROK Token
