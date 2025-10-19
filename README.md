@@ -146,17 +146,14 @@ Pass → Auto-certified. Fail → Rejected.
 
 See: [GOVERNANCE.md](GOVERNANCE.md) · [REGISTRY.md](REGISTRY.md)
 
-### Network Effect
+### Universal Standard
 
-All verified capsules burn GROK:
-- Your project uses GROKME ART
-- Another uses GROKME MUSIC
-- Another uses GROKME GAMING
+Every capsule implements the same protocol:
+- GROKME ART preserves visual culture
+- GROKME MUSIC preserves audio culture  
+- GROKME GAMING preserves game culture
 
-**Every burn reduces total supply.**  
-**All GROK holders benefit.**
-
-Not competitive. Collaborative.
+**Shared protocol. Independent implementations.**
 
 ---
 

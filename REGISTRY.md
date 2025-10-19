@@ -105,11 +105,11 @@ Know which capsules are legitimate before using.
 **For builders:**
 Showcase your verified capsule to the world.
 
-**For GROK holders:**
-See total burn across all capsules (network effect).
+**For transparency:**
+See total burn across all capsules (on-chain metrics).
 
 **For the ecosystem:**
-Transparent, trustless directory of all implementations.
+Trustless directory of all verified implementations.
 
 ---
 
