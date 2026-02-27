@@ -2,7 +2,7 @@
 
 ## Two Contracts, One Protocol
 
-**GROK Token** (Energy Source) + **GrokMeGenesis** (First Capsule) = GROKME Protocol
+**GROK Token** (Energy Source) + **GrokNFT** (First Capsule) = GROKME Protocol
 
 ---
 
@@ -64,10 +64,10 @@ Not chosen for meme. Chosen for meaning.
 
 ```
 6.9 billion GROK supply
-6.9 billion bytes Genesis capacity
+        690 NFTs Genesis capsule
 ```
 
-Not coincidence. Recognition of natural harmony.
+The numbers echo. Discovered, not designed.
 
 **4. Economic Properties**
 
@@ -132,16 +132,16 @@ function totalSupply() external view returns (uint256)
 
 ---
 
-## GrokMeGenesis Contract
+## GrokNFT Contract
 
 ### Reference Implementation
 
 **Purpose:** Full-featured example showing all baukasten modules  
-**Implementation:** GROKME GENESIS (grokme.me)  
-**Address:** [To be deployed]  
+**Implementation:** GROK NFT (grokme.me)  
+**Address:** Deployed & verified on Etherscan  
 **Network:** Ethereum Mainnet  
 **Standard:** ERC-721 (NFT)  
-**Status:** Audit in progress
+**Status:** 🟢 LIVE since November 2025 | 305M+ GROK burned
 
 **This is ONE implementation, not THE protocol.**
 
@@ -150,7 +150,7 @@ For modular assembly, see [`/contracts/templates/`](../templates/)
 ### Architecture
 
 ```solidity
-contract GrokMeGenesis is 
+contract GrokNFT is 
     ERC721URIStorage,      // NFT standard with metadata
     ReentrancyGuard,       // Security against reentrancy
     Ownable,               // Renounceable ownership
@@ -168,8 +168,9 @@ uint256 public constant GROK_DECIMALS = 10**9;
 address public constant BURN_ADDRESS = 0x000...dEaD;
 address public immutable GROK_TOKEN_ADDRESS;
 
-// Capacity (Genesis-specific)
-uint256 public constant MAX_CAPACITY_BYTES = 6_900_000_000;
+// Capacity (Genesis-specific — V2 uses NFT count, not bytes)
+// uint256 public constant MAX_CAPACITY_BYTES = 6_900_000_000; // V1
+uint256 public constant MAX_NFTS = 690; // V2 (current)
 uint256 public constant MAX_CONTENT_SIZE = 12 * 1024 * 1024; // 12 MB per NFT
 
 // Burn Rates (Genesis-specific)
@@ -359,13 +360,13 @@ Contract operates autonomously. No human intervention possible.
 1. **Import ABIs**
    ```javascript
    import GROK_ABI from './abis/GROK.json';
-   import GENESIS_ABI from './abis/GrokMeGenesis.json';
+   import GROK_NFT_ABI from './abis/GrokNFT.json';
    ```
 
 2. **Initialize contracts**
    ```javascript
    const grok = new ethers.Contract(GROK_ADDRESS, GROK_ABI, signer);
-   const genesis = new ethers.Contract(GENESIS_ADDRESS, GENESIS_ABI, signer);
+   const genesis = new ethers.Contract(GROK_NFT_ADDRESS, GROK_NFT_ABI, signer);
    ```
 
 3. **Request oracle signature**
@@ -380,7 +381,7 @@ Contract operates autonomously. No human intervention possible.
 4. **Approve GROK**
    ```javascript
    const burnAmount = calculateBurn(contentSize, burnRate);
-   await grok.approve(GENESIS_ADDRESS, burnAmount);
+   await grok.approve(GROK_NFT_ADDRESS, burnAmount);
    ```
 
 5. **Mint NFT**
@@ -418,7 +419,7 @@ Contract operates autonomously. No human intervention possible.
 
 ## Security Audit
 
-**Status:** In progress
+**Status:** GROK NFT live and operational since November 2025
 
 **Scope:**
 - GROK Token integration
@@ -429,11 +430,11 @@ Contract operates autonomously. No human intervention possible.
 - Capacity tracking accuracy
 - Self-sealing logic
 
-**Auditors:** [TBD]
+**GROK NFT:** Live, operational, 305M+ GROK burned
+**GrokmeArena:** 100/100 tests passing
+**GrokmeArenaTrophy:** 27/27 tests passing
 
-**Report:** Will be published before mainnet deployment
-
-**Bug Bounty:** Planned post-launch
+**Bug Bounty:** Planned
 
 ---
 
@@ -485,7 +486,9 @@ Contract operates autonomously. No human intervention possible.
 Both contracts: MIT License
 
 **GROK Token:** Deployed 2023 (ownerless)  
-**GrokMeGenesis:** To be deployed 2025 (will be renounced)
+**GrokNFT:** Deployed November 2025 (renounced)  
+**GrokmeArena:** Complete, deployment pending  
+**GrokmeArenaTrophy:** Complete, deployment pending
 
 ---
 

@@ -37,7 +37,7 @@ Create `abis/GROK.json`:
 ]
 ```
 
-Create `abis/GrokMeGenesis.json`:
+Create `abis/GrokNFT.json`:
 ```json
 [
   "function grokMeWithSignedId(uint256 tokenId, string memory ipfsURI, uint256 contentSizeBytes, uint256 burnRatePerKB, uint256 nonce, uint256 validUntil, bytes memory signature, bytes32 burnTx) external returns (uint256)",
@@ -60,7 +60,7 @@ export const CONTRACTS = {
     address: '0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5',
     decimals: 9
   },
-  GROKME_GENESIS: {
+  GROK_NFT_CONTRACT: {
     address: '0x...',  // Deployed Genesis contract address
     maxCapacity: 6_900_000_000,  // 6.9 GB
     minBurnRate: 1,
@@ -157,7 +157,7 @@ export function calculateBurnAmount(
 import { useAccount, usePublicClient, useWalletClient } from 'wagmi';
 import { parseUnits } from 'viem';
 import GROK_ABI from '@/abis/GROK.json';
-import GENESIS_ABI from '@/abis/GrokMeGenesis.json';
+import GROK_NFT_ABI from '@/abis/GrokNFT.json';
 import { CONTRACTS } from '@/config/contracts';
 
 export function useMintNFT() {
@@ -190,7 +190,7 @@ export function useMintNFT() {
       address: CONTRACTS.GROK_TOKEN.address,
       abi: GROK_ABI,
       functionName: 'allowance',
-      args: [address, CONTRACTS.GROKME_GENESIS.address]
+      args: [address, CONTRACTS.GROK_NFT_CONTRACT.address]
     });
     
     // 5. Approve GROK if needed
@@ -199,7 +199,7 @@ export function useMintNFT() {
         address: CONTRACTS.GROK_TOKEN.address,
         abi: GROK_ABI,
         functionName: 'approve',
-        args: [CONTRACTS.GROKME_GENESIS.address, burnAmount]
+        args: [CONTRACTS.GROK_NFT_CONTRACT.address, burnAmount]
       });
       
       await publicClient.waitForTransactionReceipt({ hash: approveTx });
@@ -207,8 +207,8 @@ export function useMintNFT() {
     
     // 6. Mint NFT
     const mintTx = await walletClient.writeContract({
-      address: CONTRACTS.GROKME_GENESIS.address,
-      abi: GENESIS_ABI,
+      address: CONTRACTS.GROK_NFT_CONTRACT.address,
+      abi: GROK_NFT_ABI,
       functionName: 'grokMeWithSignedId',
       args: [
         oracleData.tokenId,
@@ -306,7 +306,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ethers } from 'ethers';
 
 const ORACLE_PRIVATE_KEY = process.env.ORACLE_PRIVATE_KEY!;
-const CONTRACT_ADDRESS = process.env.GENESIS_CONTRACT_ADDRESS!;
+const CONTRACT_ADDRESS = process.env.GROK_NFT_CONTRACT_ADDRESS!;
 
 export async function POST(req: NextRequest) {
   const { address, burnRate, contentSize } = await req.json();
@@ -322,7 +322,7 @@ export async function POST(req: NextRequest) {
   
   // EIP-712 domain
   const domain = {
-    name: 'GrokMeGenesis',
+    name: 'GrokNFT',
     version: '1',
     chainId: 1,
     verifyingContract: CONTRACT_ADDRESS
@@ -369,7 +369,7 @@ export async function POST(req: NextRequest) {
 // Test on Sepolia first!
 const SEPOLIA_CONTRACTS = {
   GROK_TOKEN: '0x...',  // Testnet GROK
-  GROKME_GENESIS: '0x...'  // Testnet Genesis
+  GROK_NFT_CONTRACT: '0x...'  // Testnet Genesis
 };
 
 // Use small test files

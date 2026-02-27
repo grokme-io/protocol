@@ -60,11 +60,16 @@ How to share information about GROKME Protocol ethically and effectively.
 - Zero extraction (100% burn)
 - Post-human (autonomous)
 
-**GROKME GENESIS:**
-- First implementation
-- 6.9 GB capacity, memes
-- Launch: November 1st, 2025
-- Test: staging.grokme.me
+**GROK NFT:**
+- First implementation — LIVE since November 2025
+- 690 NFTs (self-sealing), memes
+- 305M+ GROK burned
+- Live: grokme.me | Test: staging.grokme.me
+
+**GROKME Arena:**
+- On-chain meme battles — launching Q1 2026
+- 5% protocol fee → GROK burned on every battle
+- Smart contracts complete (100/100 tests)
 
 **GROK Token:**
 - Energy carrier for preservation
@@ -149,10 +154,12 @@ Open standard for eternal cultural preservation.
 • 100% GROK burn to 0x000...dEaD
 • Self-sealing capsules
 • Post-human design
-• First capsule: Nov 1st
+• First capsule: LIVE since Nov 2025
+- 305M+ GROK burned
+- Arena: Q1 2026
 
-Technical: github.com/grokme-io/protocol
-Test: staging.grokme.me
+Live: grokme.me
+GitHub: github.com/grokme-io/protocol
 
 Pure mathematics. Zero extraction.
 ```
@@ -168,7 +175,8 @@ Key facts:
 ✅ Open source (MIT)
 ✅ Zero extraction
 ✅ Autonomous (no team)
-✅ Testing live (Sepolia)
+✅ GROK NFT live (305M+ burned)
+✅ Arena launching Q1 2026
 
 Links:
 🌐 grokme.io
@@ -388,7 +396,7 @@ All Genesis info: [genesis-overview.md](genesis-overview.md)
 
 ---
 
-**Version:** 1.0  
+**Version:** 2.0  
 **Status:** Community Guidelines  
 **License:** MIT (modify freely)
 

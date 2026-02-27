@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-Common questions about GROKME Protocol and GROKME GENESIS.
+Common questions about GROKME Protocol and GROK NFT.
 
 ---
 
@@ -49,7 +49,11 @@ Mathematical impossibility, not legal promise.
 
 ### Where can I get GROK?
 
-GROK is available on DEXs (Uniswap, etc.)
+GROK trades as "Grok (grokoneth.meme)" across the crypto ecosystem.
+
+DEX: Uniswap (primary liquidity)
+CEX: MEXC, Gate.io, KCEX, BloFin, BingX, CoinW
+Market Data: CoinMarketCap, CoinGecko, DexTools, DexScreener
 
 Contract: `0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5`
 
@@ -73,20 +77,20 @@ Economics are observable on-chain.
 
 ---
 
-## GROKME GENESIS
+## GROK NFT
 
-### What is GROKME GENESIS?
+### What is GROK NFT?
 
 First implementation of GROKME Protocol.
 
-6.9 GB preservation capsule for memes.
+690-NFT self-sealing preservation capsule for memes.
 
-Launches November 1st, 2025 on Ethereum Mainnet.
+Live on Ethereum Mainnet since November 2025. Over 305M GROK burned.
 
-### When does it launch?
+### Where can I use it?
 
-**Test:** Now on Sepolia (staging.grokme.me)  
-**Mainnet:** November 1st, 2025 (grokme.me)
+**Mainnet:** grokme.me (live since November 2025)  
+**Test:** staging.grokme.me (Sepolia testnet)
 
 ### How long until it fills?
 
@@ -104,7 +108,7 @@ All NFTs remain accessible. Zero ongoing costs.
 
 Content becomes eternal museum.
 
-### Can I test before mainnet?
+### Can I test before minting on mainnet?
 
 Yes! Visit staging.grokme.me (Sepolia testnet).
 
@@ -222,7 +226,7 @@ See implementation-specific docs for complete list.
 
 Depends on remaining capsule capacity.
 
-Genesis: Up to ~6.9 GB total across all NFTs.
+Genesis: 690 NFTs total in the capsule.
 
 Individual file size limits set by implementation.
 
@@ -307,13 +311,13 @@ Automatic registry coming Q1 2026 at grokme.io/registry
 
 ### Will there be more capsules?
 
-Templates coming Q1 2026:
-- GROKME ART (visual art)
-- GROKME MUSIC (audio)
-- GROKME GAMING (game assets)
-- GROKME LITERATURE (writing)
+Active and upcoming:
+- **GROKME ARENA** (meme battles) — Smart contracts complete, launching Q1 2026. Every battle burns GROK.
+- **[REDACTED]** — Major new capsule in development. Significant GROK burn expected. Announcement soon.
+- **GROKME ART** (visual art) — Planned
+- **GROKME MUSIC** (audio) — Planned
 
-Anyone can build custom capsules using protocol.
+Anyone can build custom capsules using the open protocol.
 
 ### Can I build my own capsule?
 
@@ -323,7 +327,7 @@ Use templates in `/contracts/templates/`
 
 No permission needed. Get auto-verified if you follow standard.
 
-### Will GENESIS get updates?
+### Will GROK NFT get updates?
 
 No. Once sealed, it's frozen forever.
 
@@ -333,11 +337,14 @@ That's the entire point.
 
 ### What's the long-term vision?
 
-No "vision." Protocol is complete.
+The protocol is complete and autonomous. The ecosystem is expanding:
 
-Like HTTP: It exists. People build with it. That's it.
+- GROK NFT: Live on mainnet, 305M+ GROK burned
+- GROKME Arena: On-chain meme battles, contracts complete
+- [REDACTED]: Major new capsule in development
+- Open standard: Anyone can build on the protocol
 
-Community contributions expand ecosystem.
+Community contributions drive growth.
 
 ---
 
@@ -476,7 +483,7 @@ Not human promises. Physical laws.
 
 ---
 
-**Version:** 1.0  
-**Last Updated:** October 2025  
+**Version:** 2.0  
+**Last Updated:** February 2026  
 **License:** MIT
 

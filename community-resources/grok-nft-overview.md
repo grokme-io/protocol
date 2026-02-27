@@ -1,16 +1,17 @@
-# GROKME GENESIS Overview
+# GROK NFT Overview
 
 First implementation of GROKME Protocol.
 
-**Launch:** November 1st, 2025  
+**Status:** 🟢 LIVE since November 2025  
 **Network:** Ethereum Mainnet  
-**Website:** https://grokme.me
+**Website:** https://grokme.me  
+**GROK Burned:** 305M+ and counting
 
 ---
 
-## What Is GROKME GENESIS?
+## What Is GROK NFT?
 
-A 6.9 GB preservation capsule dedicated to meme culture.
+A 690-NFT self-sealing preservation capsule dedicated to meme culture.
 
 The first practical implementation of the GROKME Protocol standard.
 
@@ -18,10 +19,10 @@ The first practical implementation of the GROKME Protocol standard.
 
 ## Specifications
 
-**Capacity:** 6.9 GB (6,900,000,000 bytes)  
-**Expected NFTs:** ~10,000-13,000 (depending on file sizes)  
+**Capsule:** 690 NFTs (self-sealing when all minted)  
 **Burn Range:** 1-1,000 GROK/KB (creator's choice)  
-**Rarity System:** Based on total GROK burned
+**Rarity System:** 6 tiers (Common → Unicorn) based on total GROK burned  
+**GROK Burned:** 305M+ via utility
 
 **Contract Features:**
 - Variable burn rates
@@ -38,7 +39,7 @@ The first practical implementation of the GROKME Protocol standard.
 
 GROK was born as meme token in 2023.
 
-Genesis preserves meme culture = Full circle.
+GROK NFT preserves meme culture = Full circle.
 
 ### 2. Human × AI Creative Domain
 
@@ -46,7 +47,7 @@ AI tools like [GROK imagine](https://grok.com/imagine) make creation effortless.
 
 But everything drowns in noise.
 
-Genesis preserves what matters: The brilliance that would otherwise be lost in 48 hours.
+GROK NFT preserves what matters: The brilliance that would otherwise be lost in 48 hours.
 
 ### 3. Cultural DNA
 
@@ -92,8 +93,8 @@ Permanent. Unstoppable. Eternal.
 
 ### When Sealed
 
-At 6.9 GB capacity:
-- Minting stops forever
+When all 690 NFTs are minted:
+- Minting stops forever (smart contract enforced)
 - All NFTs remain accessible
 - Content becomes eternal museum
 - Zero ongoing costs
@@ -180,11 +181,10 @@ Verifiable on Etherscan.
 
 ## Timeline
 
-**October 19, 2025:** Announcement + Testing begins  
-**October 20-31, 2025:** Public testing on Sepolia  
-**November 1, 2025:** Mainnet launch  
-**Capacity Fill:** TBD (could be days, weeks, or months)  
-**Seal:** Automatic when 6.9 GB reached
+**October 2025:** Announcement + Public testing on Sepolia  
+**November 2025:** Mainnet launch — 🟢 LIVE  
+**305M+ GROK burned** through utility since launch  
+**Seal:** Automatic when all 690 NFTs are minted
 
 ---
 
@@ -239,13 +239,13 @@ This is yours. The first capsule.
 
 ## How to Participate
 
-**Before Launch:**
-1. Test on staging.grokme.me
-2. Get GROK if you don't have it
-3. Prepare your memes
-4. Understand the mechanics
+**Getting started:**
+1. Get GROK on Uniswap (or MEXC, Gate.io, etc.)
+2. Visit grokme.me
+3. Connect wallet
+4. Upload, choose burn rate, mint
 
-**On November 1st:**
+**Right now:**
 1. Visit grokme.me
 2. Connect wallet (Ethereum Mainnet)
 3. Upload, burn, mint
@@ -261,8 +261,8 @@ This is yours. The first capsule.
 
 ## Links
 
+**Live:** https://grokme.me (Ethereum Mainnet)  
 **Test:** https://staging.grokme.me (Sepolia)  
-**Launch:** https://grokme.me (Nov 1st)  
 **Protocol:** https://grokme.io  
 **GitHub:** https://github.com/grokme-io/protocol  
 **GROK Token:** https://etherscan.io/token/0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5
@@ -277,7 +277,7 @@ For technical details: [WHITEPAPER.md](../WHITEPAPER.md)
 
 ---
 
-**Version:** 1.0  
-**Status:** Pre-Launch Information  
+**Version:** 2.0  
+**Status:** 🟢 LIVE on Ethereum Mainnet since November 2025  
 **License:** MIT (share freely)
 

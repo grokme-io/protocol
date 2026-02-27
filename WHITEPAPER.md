@@ -60,7 +60,7 @@ Protocol Layer (Universal Standard)
 └── Rarity System (on-chain value)
 
 Capsule Layer (Implementations)
-├── GROKME GENESIS (6.9 GB, memes)
+├── GROK NFT (6.9 GB, memes)
 ├── Future Capsules (anyone can launch)
 └── Whitelabel Capsules (permissionless)
 ```
@@ -221,15 +221,16 @@ GROKME eliminates humans:
 
 ---
 
-## 5. GROKME GENESIS
+## 5. GROK NFT
 
-See [GENESIS.md](GENESIS.md) for complete specification.
+See [GROK-NFT.md](implementations/grokme-me/GROK-NFT.md) for complete specification.
 
 ### 5.1 First Capsule
 
-**Capacity:** 6.9 GB (6,900,000,000 bytes)  
+**Capsule:** 690 NFTs (self-sealing)  
 **Focus:** Memes (irreducible humanity)  
-**Launch:** 2025  
+**Launch:** November 2025 — **LIVE on Ethereum Mainnet**  
+**GROK Burned:** 305M+ and counting  
 **Network:** Ethereum Mainnet
 
 ### 5.2 Why Memes?
@@ -481,15 +482,17 @@ The protocol is complete and runs autonomously.
 
 ### Smart Contracts
 - GROK Token: [0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5](https://etherscan.io/address/0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5)
-- GrokMeGenesis: [To be deployed]
+- GrokNFT: Live on Ethereum Mainnet (verified on Etherscan)
+- GrokmeArena: Complete (100/100 tests) — deployment pending
+- GrokmeArenaTrophy: Complete (27/27 tests) — deployment pending
 
 ---
 
 **Built with pure mathematical permanence.** 🔥
 
-**Version:** 1.0  
-**Last Updated:** October 2025  
-**Status:** Production Ready  
+**Version:** 2.0  
+**Last Updated:** February 2026  
+**Status:** Production — GROK NFT Live | Arena Launching Q1 2026  
 **License:** MIT
 
 ---
@@ -498,5 +501,5 @@ The protocol is complete and runs autonomously.
 
 **Website:** [grokme.io](https://grokme.io) (Njalla → Akash → Ungovernable)  
 **GitHub:** [github.com/grokme-io/protocol](https://github.com/grokme-io/protocol)  
-**First Implementation:** [grokme.me](https://grokme.me) (GROKME GENESIS)
+**First Implementation:** [grokme.me](https://grokme.me) (GROK NFT)
 

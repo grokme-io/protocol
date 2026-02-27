@@ -17,7 +17,7 @@ protocol/
 │
 ├── implementations/                 Submitted Capsules
 │   ├── grokme-me/                  First capsule
-│   │   ├── GENESIS.md              Full docs
+│   │   ├── GROK-NFT.md             Full docs
 │   │   └── metadata.json           Structured data
 │   ├── coming-soon/                In development
 │   ├── SUBMISSION-TEMPLATE.md      How to submit
@@ -28,7 +28,7 @@ protocol/
 │   │   ├── modules/                Individual modules
 │   │   └── README.md               Assembly guide
 │   ├── mainnet/
-│   │   ├── GrokMeGenesis.sol      Reference implementation
+│   │   ├── GrokNFT.sol      Reference implementation
 │   │   └── README.md              GROK + Genesis docs
 │   ├── interfaces/
 │   └── libraries/
@@ -119,6 +119,6 @@ Optional:
 
 ---
 
-**Updated:** October 2025  
+**Updated:** February 2026  
 **Maintained by:** Open source contributors (GitHub)
 

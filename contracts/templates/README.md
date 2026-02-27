@@ -8,7 +8,7 @@ Modular smart contract templates for building GROKME-compliant cultural preserva
 
 **Baukasten System** - Build your implementation by combining protocol-compliant modules.
 
-**Important:** GrokMeGenesis is the dedicated contract for grokme.me (meme preservation). Build YOUR OWN contract using these templates.
+**Important:** GrokNFT is the dedicated contract for grokme.me (meme preservation). Build YOUR OWN contract using these templates.
 
 ---
 
@@ -496,6 +496,6 @@ Use freely. No attribution required. Build the future.
 
 ---
 
-**Last Updated:** October 2025  
+**Last Updated:** February 2026  
 **Template Version:** 1.0.0  
 **Compatible With:** Solidity ^0.8.20

@@ -45,7 +45,7 @@ export const GROK_ABI = [
   'function allowance(address owner, address spender) external view returns (uint256)'
 ] as const;
 
-export const GENESIS_ABI = [
+export const GROK_NFT_ABI = [
   'function grokMeWithSignedId(uint256 tokenId, string memory ipfsURI, uint256 contentSizeBytes, uint256 burnRatePerKB, uint256 nonce, uint256 validUntil, bytes memory signature, bytes32 burnTx) external returns (uint256)',
   'function isCapsuleOpen() external view returns (bool)',
   'function getRemainingCapacity() external view returns (uint256)'
@@ -156,7 +156,7 @@ export async function requestOracleSignature(params: {
 // hooks/useMintNFT.ts
 import { useState } from 'react';
 import { useAccount, usePublicClient, useWalletClient } from 'wagmi';
-import { GROKME_CONFIG, GROK_ABI, GENESIS_ABI } from '@/config/contracts';
+import { GROKME_CONFIG, GROK_ABI, GROK_NFT_ABI } from '@/config/contracts';
 import { uploadFile } from '@/lib/ipfs';
 import { calculateBurnAmount } from '@/lib/calculations';
 import { requestOracleSignature } from '@/lib/oracle';
@@ -219,7 +219,7 @@ export function useMintNFT() {
       setStatus('Minting NFT...');
       const mintTx = await walletClient.writeContract({
         address: GROKME_CONFIG.genesis.address,
-        abi: GENESIS_ABI,
+        abi: GROK_NFT_ABI,
         functionName: 'grokMeWithSignedId',
         args: [
           BigInt(oracleData.tokenId),
@@ -409,7 +409,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ethers } from 'ethers';
 
 const ORACLE_PRIVATE_KEY = process.env.ORACLE_PRIVATE_KEY!;
-const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_GENESIS_ADDRESS!;
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_GROK_NFT_ADDRESS!;
 const CHAIN_ID = parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || '1');
 
 export async function POST(req: NextRequest) {
@@ -442,7 +442,7 @@ export async function POST(req: NextRequest) {
     
     // EIP-712 domain
     const domain = {
-      name: 'GrokMeGenesis',
+      name: 'GrokNFT',
       version: '1',
       chainId: CHAIN_ID,
       verifyingContract: CONTRACT_ADDRESS
@@ -507,7 +507,7 @@ NEXT_PUBLIC_INFURA_PROJECT_ID=your_project_id
 NEXT_PUBLIC_INFURA_API_SECRET=your_api_secret
 
 # Contract addresses
-NEXT_PUBLIC_GENESIS_ADDRESS=0x...
+NEXT_PUBLIC_GROK_NFT_ADDRESS=0x...
 NEXT_PUBLIC_CHAIN_ID=1
 
 # Oracle (SERVER-SIDE ONLY)

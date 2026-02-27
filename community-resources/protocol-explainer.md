@@ -1,6 +1,6 @@
 # GROKME Protocol Explainer
 
-**Last Updated:** October 2025
+**Last Updated:** February 2026
 
 ---
 
@@ -43,7 +43,7 @@ Not through promises. Through mathematics.
 ### 1. Preservation Capsules
 
 Think of capsules like websites, but for the protocol:
-- Each capsule has a fixed capacity (e.g., 6.9 GB)
+- Each capsule has a fixed capacity (e.g., 690 NFTs)
 - Anyone can mint NFTs by burning GROK
 - When capacity is reached, minting stops forever
 - Content remains accessible eternally
@@ -128,7 +128,7 @@ Like domain extensions for culture:
 
 | Domain | Purpose | GROKME Capsule | Purpose |
 |--------|---------|----------------|---------|
-| .com | Commerce | GENESIS | Memes |
+| .com | Commerce | GROK NFT | Memes |
 | .art | Artists | ART | Visual art |
 | .music | Musicians | MUSIC | Audio |
 | .game | Gaming | GAMING | Game assets |
@@ -139,20 +139,28 @@ Every project picks the capsule that fits their culture.
 
 ---
 
-## GROKME GENESIS
+## GROK NFT — LIVE
 
-First implementation of the protocol.
+First implementation of the protocol. **Live on Ethereum Mainnet since November 2025.**
 
 **Specifications:**
-- Capacity: 6.9 GB
+- Capsule: 690 NFTs (self-sealing)
 - Focus: Meme preservation
-- Launch: November 1st, 2025
+- GROK Burned: 305M+ and counting
 - Network: Ethereum Mainnet
 
 **Why memes?**
-GROK was born as meme token. Genesis preserves meme culture.
+GROK was born as meme token. GROK NFT preserves meme culture.
 
-See: [genesis-overview.md](genesis-overview.md)
+## GROKME ARENA — Coming Soon
+
+The utility expansion. On-chain meme battles between token communities.
+
+- 5% protocol fee on every stake → auto-swapped to GROK → burned
+- Every battle burns GROK, regardless of which tokens fight
+- Smart contracts complete (100/100 tests passing)
+
+See: [IMPLEMENTATIONS.md](../IMPLEMENTATIONS.md)
 
 ---
 
@@ -232,11 +240,11 @@ See [Implementation Guide](../docs/implementation/INTEGRATION-GUIDE.md)
 Visit [staging.grokme.me](https://staging.grokme.me)
 
 **Want to participate:**  
-Wait for Genesis launch (Nov 1st, 2025)
+Visit [grokme.me](https://grokme.me) — live on Ethereum Mainnet
 
 ---
 
-**Version:** 1.0  
+**Version:** 2.0  
 **Status:** Educational Resource  
 **License:** MIT (share freely)
 

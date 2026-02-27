@@ -19,7 +19,7 @@ These are **neutral, fact-based resources** for information sharing.
 - For beginners
 
 **[genesis-overview.md](genesis-overview.md)**
-- GROKME GENESIS details
+- GROK NFT details
 - First implementation
 - Technical specs
 - Launch info
@@ -188,7 +188,7 @@ These belong to everyone. Or to no one. Same thing.
 
 ---
 
-**Version:** 1.0  
-**Last Updated:** October 2025  
+**Version:** 2.0  
+**Last Updated:** February 2026  
 **Purpose:** Education & Information Sharing
 

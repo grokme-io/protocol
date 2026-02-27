@@ -89,7 +89,7 @@ Protocol is complete. Everything else is optional.
 
 **Sustainability model:** Protocol doesn't need money. Code runs for free.
 
-Infrastructure costs are borne by implementations (like GROKME GENESIS), not by protocol.
+Infrastructure costs are borne by implementations (like GROK NFT), not by protocol.
 
 ---
 
@@ -135,6 +135,6 @@ Everything beyond the protocol core is optional, independent, and permissionless
 ---
 
 **Version:** 1.0  
-**Last Updated:** October 2025  
+**Last Updated:** February 2026  
 **Status:** Immutable
 

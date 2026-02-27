@@ -17,7 +17,7 @@ Build your own cultural preservation platform using GROKME Protocol standards.
 - Historical documents vault
 - Community-specific archive
 
-**Important:** GrokMeGenesis is the dedicated contract for grokme.me (meme preservation). You build YOUR OWN contract using the protocol templates.
+**Important:** GrokNFT is the dedicated contract for grokme.me (meme preservation). You build YOUR OWN contract using the protocol templates.
 
 ---
 

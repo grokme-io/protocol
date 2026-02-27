@@ -29,7 +29,7 @@ All implementations live in `/implementations/` directory:
 
 ```
 implementations/
-├── grokme-me/           (GROKME GENESIS)
+├── grokme-me/           (GROK NFT)
 ├── coming-soon/         (In development)
 └── your-project/        (Submit yours!)
 ```
@@ -42,28 +42,61 @@ Each contains:
 
 ## Active Implementations
 
-### 1. GROKME GENESIS
+### 1. GROK NFT
 
 **Directory:** [`/implementations/grokme-me/`](implementations/grokme-me/)  
 **Website:** [grokme.me](https://grokme.me)  
-**Status:** 🟢 ACTIVE
+**Status:** 🟢 **LIVE on Ethereum Mainnet since November 2025**
 
 **Quick Facts:**
-- **Capacity:** 6.9 GB
+- **Capsule:** 690 NFTs (self-sealing)
 - **Focus:** Memes (last human domain)
 - **Burn Range:** 1-1,000 GROK/KB
-- **Contract:** [To be deployed]
+- **GROK Burned:** 305M+ and counting
+- **Contract:** Deployed & verified on Etherscan
+- **Rarity:** 6 tiers (Common → Unicorn) based on total GROK burned
 
-**The first capsule. Proof of concept.**
+**The first capsule. Live. Burning. Filling.**
 
-[Read full documentation →](implementations/grokme-me/GENESIS.md)
+[Read full documentation →](implementations/grokme-me/GROK-NFT.md)
+
+---
+
+### 2. GROKME ARENA
+
+**Status:** 🟡 Smart contracts complete — Launch Q1 2026
+
+**Quick Facts:**
+- **Type:** On-chain meme battle protocol
+- **Mechanic:** 1v1 meme duels with real token stakes, poker-style bidding, on-chain voting
+- **Burns:** 5% protocol fee on every stake → auto-swapped to GROK → burned. Every battle burns GROK regardless of which tokens fight.
+- **Settlement:** Permissionless. Winner meme → eternal Trophy NFT. Loser meme → destroyed. All tokens → 0x...dEaD.
+- **Contracts:** GrokmeArena (73 tests) + GrokmeArenaTrophy (27 tests) = 100/100 passing
+- **Security:** Renounced design. No admin key. No upgrade proxy. No kill switch.
+
+**The utility expansion. The GROK burn machine.**
+
+---
+
+### 3. [REDACTED] — Major New Capsule
+
+**Status:** 🔴 In active development
+
+**What we can share:**
+- A significant new use case for the GROKME Protocol beyond meme culture
+- Expected to drive substantial GROK burn volume
+- Large-scale investment in development and infrastructure
+- Burns GROK via the same protocol mechanics (100% to 0x...dEaD)
+- Formal announcement coming soon
+
+**This is not a small addition. This is a new dimension for the protocol.**
 
 ---
 
 ## Future Capsules
 
-**Status:** More to come  
-**Timeline:** TBD
+**Status:** Protocol expanding rapidly  
+**Timeline:** 2026+
 
 The protocol scales. Anyone can build new capsules following the open standard.
 Community-driven expansion.
@@ -162,10 +195,10 @@ Removed if: Protocol violation, misrepresentation, or malicious behavior detecte
 
 ## Statistics
 
-**Active Implementations:** 1 (GENESIS)  
-**Total Capacity:** 6.9 GB (growing as new capsules launch)  
-**Total GROK Burned:** [Tracked live via chain]  
-**Last Updated:** October 2025
+**Active Implementations:** 1 live (GROK NFT) + 2 in development (Arena, [REDACTED])  
+**Total GROK Burned:** 305M+ via GROK NFT utility (tracked live on-chain)  
+**Arena Status:** 100/100 smart contract tests passing  
+**Last Updated:** February 2026
 
 ---
 

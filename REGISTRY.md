@@ -39,12 +39,11 @@ Fail any → Rejected
 Pre-built capsules by community contributors:
 
 ```
-GROKME GENESIS      ✓ Verified    Live: Nov 1, 2025
-GROKME UNIVERSAL    ⏳ Coming     Q1 2026
-GROKME ART          ⏳ Coming     Q1 2026
-GROKME MUSIC        ⏳ Coming     Q1 2026
-GROKME GAMING       ⏳ Coming     Q1 2026
-GROKME LITERATURE   ⏳ Coming     Q1 2026
+GROK NFT           ✓ Verified    LIVE since Nov 2025    690 NFTs    305M+ GROK burned
+GROKME ARENA        ⏳ Coming     Q1 2026                Meme Battles  100/100 tests
+[REDACTED]          🔴 Dev        Q1-Q2 2026             Major capsule  Massive burns expected
+GROKME UNIVERSAL    ⏳ Planned    TBD                    All content
+GROKME ART          ⏳ Planned    TBD                    Visual art
 ```
 
 ### Community Implementations
@@ -123,8 +122,8 @@ Trustless directory of all verified implementations.
 
 ---
 
-**Status:** In Development (Community Contributors)  
-**Expected:** Q1 2026  
+**Status:** GROK NFT live | Arena launching | More in development  
+**Last Updated:** February 2026  
 **Updates:** Follow GitHub for progress
 
 ---

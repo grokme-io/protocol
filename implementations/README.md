@@ -8,8 +8,8 @@ Official registry of verified capsules using GROKME Protocol.
 
 ```
 implementations/
-├── grokme-me/              First capsule (GENESIS)
-│   ├── GENESIS.md          Full documentation
+├── grokme-me/              First capsule (GROK NFT)
+│   ├── GROK-NFT.md         Full documentation
 │   └── metadata.json       Structured data
 │
 ├── your-project/           Your submission
@@ -23,15 +23,34 @@ implementations/
 
 ## Active Implementations
 
-### 1. GROKME GENESIS (grokme.me)
+### 1. GROK NFT (grokme.me)
 
-**Status:** 🟢 ACTIVE  
-**Capacity:** 6.9 GB  
-**Focus:** Memes
+**Status:** 🟢 **LIVE on Ethereum Mainnet since November 2025**  
+**Capsule:** 690 NFTs (self-sealing)  
+**Focus:** Memes  
+**GROK Burned:** 305M+
 
-The first capsule. Proof of concept.
+The first capsule. Live. Burning. Filling.
 
-[Read documentation →](grokme-me/GENESIS.md)
+[Read documentation →](grokme-me/GROK-NFT.md)
+
+### 2. GROKME ARENA (coming soon)
+
+**Status:** 🟡 Smart contracts complete (100/100 tests)  
+**Type:** On-chain meme battle protocol  
+**Burns:** 5% of every stake → GROK burned
+
+The utility expansion. Every battle burns GROK.
+
+### 3. [REDACTED] (in development)
+
+**Status:** 🔴 Active development  
+**Type:** Major new protocol implementation  
+**Impact:** Significant GROK burn volume expected
+
+Announcement soon.
+
+[Read documentation →](grokme-me/GROK-NFT.md)
 
 ---
 

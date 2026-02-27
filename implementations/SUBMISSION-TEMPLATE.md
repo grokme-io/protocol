@@ -112,7 +112,7 @@ From Protocol Baukasten:
 
 ### 1. CAPSULE.md
 
-Document your specific capsule (see `grokme-me/GENESIS.md` as example).
+Document your specific capsule (see `grokme-me/GROK-NFT.md` as example).
 
 **Sections:**
 - Overview & specifications

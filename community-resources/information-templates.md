@@ -25,8 +25,9 @@ Think of it like HTTP for websites, but for eternal digital archives.
 - **Zero Extraction:** 100% GROK burn to 0x000...dEaD
 - **Post-Human:** Owner renounced, no admin functions
 - **Self-Sealing:** Capacity-based finality
-- **First Implementation:** GROKME GENESIS (6.9 GB, memes)
-- **Launch:** November 1st, 2025 on Ethereum
+- **First Implementation:** GROK NFT (690 NFTs, memes) — LIVE since November 2025
+- **305M+ GROK burned** through utility
+- **GROKME Arena:** On-chain meme battles — coming Q1 2026
 
 ## How It Works
 
@@ -40,7 +41,8 @@ Think of it like HTTP for websites, but for eternal digital archives.
 - **Protocol:** https://github.com/grokme-io/protocol
 - **Whitepaper:** https://github.com/grokme-io/protocol/blob/main/WHITEPAPER.md
 - **GROK Token:** 0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5
-- **Test Network:** https://staging.grokme.me (Sepolia)
+- **Live:** https://grokme.me (Ethereum Mainnet)
+- **Test:** https://staging.grokme.me (Sepolia)
 
 ## What This Is NOT
 
@@ -120,22 +122,26 @@ Verifiable on-chain.
 
 Autonomous forever.
 
-7/ GROKME GENESIS launches Nov 1st:
-- First implementation
-- 6.9 GB capacity
-- Meme preservation
+7/ GROK NFT is LIVE:
+- First implementation since Nov 2025
+- 690 NFTs, self-sealing
+- 305M+ GROK burned
 - Ethereum Mainnet
 
-Test now: staging.grokme.me
+Try it: grokme.me
 
-8/ This is an open protocol.
+8/ Next: GROKME ARENA
+On-chain meme battles.
+Every battle burns GROK.
+100/100 tests passing.
+Launching Q1 2026.
+
+9/ This is an open protocol.
 Not a project. Not a company.
 
 Anyone can build.
 Anyone can verify.
-Everyone can benefit.
 
-Learn more:
 🔗 grokme.io
 📚 github.com/grokme-io/protocol
 
@@ -167,15 +173,14 @@ The survivor finds meaning.
 
 Perfect energy carrier.
 
-4/ GROKME GENESIS alone:
-Up to 30% of supply permanently destroyed
+4/ GROK NFT: 305M+ GROK already burned.
 
-Next wave (Q1 2026):
-• GROKME ART
-• GROKME MUSIC
-• GROKME GAMING
+Next:
+• GROKME ARENA (meme battles, every battle burns GROK)
+• [REDACTED] (major new capsule, massive burns expected)
+• More capsule templates planned
 
-Every capsule burns GROK.
+Ecosystem is accelerating.
 
 5/ The transformation:
 Not "use case" (temporary utility)
@@ -190,11 +195,11 @@ Pure utility.
 
 Verifiable: etherscan.io/token/0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5
 
-7/ GROKME GENESIS launches Nov 1st.
+7/ GROK NFT is LIVE since November 2025.
 
-Test now: staging.grokme.me
+305M+ GROK burned.
 
-Full story: grokme.io/announcement
+Arena launching Q1 2026.
 
 The meme token that refused to die
 now ensures culture never dies.
@@ -226,7 +231,8 @@ Think HTTP for websites, but for eternal digital archives.
 - First truly "post-human" protocol (no admin, no team, autonomous)
 - Novel use of token burns (GROK → 0x000...dEaD)
 - Self-sealing mechanism (mathematical finality)
-- First implementation launching Nov 1st (GROKME GENESIS)
+- First implementation LIVE since Nov 2025 (GROK NFT, 305M+ GROK burned)
+- GROKME Arena launching Q1 2026 (on-chain meme battles)
 
 ## Key Facts
 
@@ -234,6 +240,7 @@ Think HTTP for websites, but for eternal digital archives.
 - Zero extraction: 100% burn, no fees
 - Technical: https://github.com/grokme-io/protocol
 - Website: https://grokme.io
+- Live: https://grokme.me
 - Test: https://staging.grokme.me
 
 ## Why I'm Sharing
@@ -334,7 +341,7 @@ All MIT licensed. Fork freely.
 
 Sepolia: https://staging.grokme.me
 
-Mainnet launch: Nov 1st (GROKME GENESIS)
+Live: grokme.me (since Nov 2025)
 
 ---
 
@@ -358,7 +365,8 @@ New open protocol for cultural preservation launched.
 ✅ Open source (MIT)
 ✅ Zero extraction (100% burn)
 ✅ Post-human (autonomous)
-✅ First capsule: GROKME GENESIS (Nov 1st)
+✅ First capsule: GROK NFT (LIVE, 305M+ burned)
+✅ Next: GROKME Arena (meme battles, Q1 2026)
 
 **Links:**
 🌐 Protocol: https://grokme.io

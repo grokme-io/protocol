@@ -10,9 +10,9 @@ import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 
 /**
- * @title GROKME GENESIS
+ * @title GROK NFT
  */
-contract GrokMeGenesis is ERC721URIStorage, ReentrancyGuard, Ownable, EIP712 {
+contract GrokNFT is ERC721URIStorage, ReentrancyGuard, Ownable, EIP712 {
     
     using ECDSA for bytes32;
     
@@ -75,8 +75,8 @@ contract GrokMeGenesis is ERC721URIStorage, ReentrancyGuard, Ownable, EIP712 {
     // ============ CONSTRUCTOR ============
     
     constructor(address _grokTokenAddress, address _oracle) 
-        ERC721("GROKME GENESIS", "GROKME GENESIS")
-        EIP712("GrokMeGenesis", "1")
+        ERC721("GROK NFT", "GROK NFT")
+        EIP712("GrokNFT", "1")
     {
         require(_grokTokenAddress != address(0), "Invalid GROK address");
         require(_oracle != address(0), "Invalid oracle address");

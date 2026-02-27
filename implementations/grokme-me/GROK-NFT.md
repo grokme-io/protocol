@@ -1,38 +1,39 @@
-# GROKME GENESIS
+# GROK NFT
 
 ## The First Capsule
 
 **Implementation:** grokme.me  
-**Status:** First implementation of GROKME Protocol  
-**Submitted:** September 2025 
+**Status:** 🟢 LIVE on Ethereum Mainnet since November 2025  
+**Submitted:** September 2025  
 **Go-Live:** November 2025  
 **Network:** Ethereum Mainnet  
-**Capacity:** 6,900,000,000 bytes (6.9 GB)
+**Capsule:** 690 NFTs (self-sealing)  
+**GROK Burned:** 305M+ and counting
 
 ---
 
 ## The Synchronicity
 
 ```
-6,900,000,000 GROK    (Total Supply)
-6,900,000,000 Bytes   (Genesis Capacity)
+6,900,000,000 GROK    (Initial Supply)
+            690 NFTs   (Genesis Capsule)
 ```
 
-Not coincidence. **Design.**
+The numbers echo. **Discovered, not designed.**
 
 ---
 
-## Genesis Specifications
+## GROK NFT Specifications
 
 ### Capacity
 
-**Maximum:** 6.9 GB (6,900,000,000 bytes)  
-**Rationale:** Synchronicity with GROK token supply
+**Maximum:** 690 NFTs  
+**Rationale:** Synchronicity with GROK token supply (6.9B → 690)
 
 **When sealed:**
-- Minting permanently disabled
-- ~10,000-13,000 NFTs preserved (depending on average file size)
+- Minting permanently disabled (all 690 slots filled)
 - Content becomes eternal museum
+- Zero ongoing costs
 
 ### Burn Mechanics
 
@@ -69,7 +70,7 @@ Based on **total GROK burned:**
 
 ### Smart Contract
 
-**Address:** [To be deployed]  
+**Address:** Deployed & verified on Etherscan  
 **Standard:** ERC-721 (NFT)  
 **Owner:** 0x000...dEaD (renounced at launch)  
 **Upgradeable:** No (immutable)
@@ -115,11 +116,11 @@ Optimistic (avg 300 GROK/KB):
 
 ---
 
-## The Genesis Mission
+## The GROK NFT Mission
 
 ### Cultural Focus: Memes
 
-**Genesis is dedicated to memes.**
+**GROK NFT is dedicated to memes.**
 
 Not arbitrary. **Philosophical necessity.**
 
@@ -129,7 +130,7 @@ Not arbitrary. **Philosophical necessity.**
 
 GROK was born as meme token (2023). Community-driven, viral, chaotic.
 
-Genesis honors this heritage. The energy source finds its purpose: preserving the very culture it emerged from.
+GROK NFT honors this heritage. The energy source finds its purpose: preserving the very culture it emerged from.
 
 **Full circle:** Meme token → Cultural preservation → Meme preservation
 
@@ -190,7 +191,7 @@ No curation. No permanence. Just... scroll, scroll, scroll.
 
 **Your best work deserves better than the algorithm's memory.**
 
-Genesis solves this:
+GROK NFT solves this:
 - Create with AI (embrace the tools!)
 - Burn GROK (prove you grok its value)
 - Preserve forever (mathematics, not feeds)
@@ -226,7 +227,7 @@ If you burn GROK for it, you've grokked its value.
 
 ### Community
 
-Genesis establishes proof of concept:
+GROK NFT establishes proof of concept:
 - Protocol works as designed
 - Self-sealing functions correctly
 - IPFS infrastructure scales
@@ -253,7 +254,7 @@ Genesis establishes proof of concept:
 - All NFTs remain transferable (ERC-721 standard)
 - Content accessible via IPFS (permanent pinning)
 - Rarity becomes immutable
-- Genesis becomes historical artifact
+- GROK NFT becomes historical artifact
 
 **Long-term:**
 - First capsule = highest historical value
@@ -279,7 +280,7 @@ Genesis establishes proof of concept:
 
 ---
 
-## Genesis vs. Future Capsules
+## GROK NFT vs. Future Capsules
 
 ### What Genesis Establishes
 
@@ -307,7 +308,7 @@ Genesis establishes proof of concept:
 
 ---
 
-## Participate in Genesis
+## Participate in GROK NFT
 
 ### For Creators
 
@@ -355,7 +356,7 @@ Genesis establishes proof of concept:
 
 ## The First Shall Remain First
 
-**Genesis is special.**
+**The first capsule is special.**
 
 Not because we say so. Because mathematics says so.
 
@@ -372,10 +373,10 @@ Not because we say so. Because mathematics says so.
 
 ---
 
-**Launch:** 2025  
+**Launch:** November 2025 — LIVE  
 **Implementation:** grokme.me  
-**Status:** Submitted to GROKME Protocol Registry  
-**Contract:** To be deployed post-audit
+**Status:** 🟢 Live on Ethereum Mainnet | 305M+ GROK burned  
+**Contract:** Deployed & verified on Etherscan
 
-**The first capsule. The proof. The Genesis.**
+**The first capsule. Live. Burning. Filling.**
 

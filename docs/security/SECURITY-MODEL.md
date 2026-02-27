@@ -38,7 +38,7 @@ function upgrade() external onlyOwner { ... }
 **Verification:**
 ```bash
 # Search contract for admin functions
-grep -i "onlyOwner\|onlyAdmin\|onlyRole" GrokMeGenesis.sol
+grep -i "onlyOwner\|onlyAdmin\|onlyRole" GrokNFT.sol
 # Result: Only in Ownable.sol (for renouncement)
 
 # Verify ownership renounced
@@ -60,7 +60,7 @@ contract Proxy {
 **GROKME:**
 ```solidity
 // Direct deployment, no proxy
-contract GrokMeGenesis { ... }
+contract GrokNFT { ... }
 ```
 
 **Immutable:** Contract code cannot change.
@@ -92,7 +92,7 @@ function pause() external onlyOwner {
 ```solidity
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract GrokMeGenesis is ReentrancyGuard {
+contract GrokNFT is ReentrancyGuard {
     function grokMeWithSignedId(...) 
         external 
         nonReentrant  // ← Protection
