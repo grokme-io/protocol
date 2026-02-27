@@ -1,6 +1,6 @@
 # GROKME Capsule Registry
 
-**Status:** Coming Q1 2026
+**Status:** Planned
 
 ---
 
@@ -72,7 +72,7 @@ Anyone can build and submit:
 
 ## Live Dashboard
 
-**URL:** grokme.io/registry (Coming Q1 2026)
+**URL:** grokme.io/registry (Planned)
 
 **Features:**
 - Search by contract address

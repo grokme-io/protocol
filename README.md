@@ -117,9 +117,9 @@ Audit the system → [`/docs/security/`](docs/security/) + [`/contracts/mainnet/
 
 **Every project picks the capsule that fits their culture.**
 
-### Official Templates (Q1 2026)
+### Capsule Ecosystem
 
-Pre-built, audited, renounced contracts:
+Active and upcoming implementations:
 - **GROK NFT** (memes) - ✅ LIVE since November 2025 | 690 NFTs | 305M+ GROK burned
 - **GROKME ARENA** (meme battles) - Smart contracts complete (100/100 tests) | Launch Q1 2026
 - **[REDACTED]** (major new capsule) - In development | Significant GROK burn expected | Announcement soon
@@ -141,8 +141,8 @@ Every capsule is checked against protocol criteria:
 
 Pass → Auto-certified. Fail → Rejected.
 
-**Verification Dashboard:** `grokme.io/verify` (Coming Q1 2026)  
-**Public Registry:** `grokme.io/registry` (Coming Q1 2026)
+**Verification Dashboard:** `grokme.io/verify` (Planned)  
+**Public Registry:** `grokme.io/registry` (Planned)
 
 See: [GOVERNANCE.md](GOVERNANCE.md) · [REGISTRY.md](REGISTRY.md)
 

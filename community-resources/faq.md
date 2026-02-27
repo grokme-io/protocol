@@ -286,7 +286,7 @@ Check contract against criteria:
 
 All verifiable on Etherscan.
 
-Automatic verification coming Q1 2026.
+Automatic verification planned.
 
 ### Can there be fake GROKME capsules?
 
@@ -303,7 +303,7 @@ Don't trust. Verify.
 
 GitHub: [implementations/ directory](../implementations/)
 
-Automatic registry coming Q1 2026 at grokme.io/registry
+Registry planned at grokme.io/registry
 
 ---
 

@@ -97,8 +97,8 @@ Infrastructure costs are borne by implementations (like GROK NFT), not by protoc
 
 ROADMAP.md tracks **community contributions**, not corporate plans.
 
-"Q1 2026: GROKME ART" means:
-- Contributors are building it
+"GROKME ART: Planned" means:
+- Contributors may build it
 - It will be released open source
 - Anyone can use it
 
