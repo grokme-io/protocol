@@ -64,7 +64,7 @@ Each contains:
 
 ### 2. GROKME ARENA
 
-**Status:** 🟡 Smart contracts complete — Launch Q1 2026
+**Status:** 🟡 Smart contracts complete — Launch Q1/Q2 2026
 
 **Quick Facts:**
 - **Type:** On-chain meme battle protocol

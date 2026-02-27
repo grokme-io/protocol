@@ -26,7 +26,7 @@ No core team. No commercial entity. Pure open source.
 
 ---
 
-## Q1 2026 — IN PROGRESS
+## Q1/Q2 2026 — IN PROGRESS
 
 ### � GROKME ARENA — The Utility Expansion
 

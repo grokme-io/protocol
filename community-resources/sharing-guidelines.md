@@ -67,7 +67,7 @@ How to share information about GROKME Protocol ethically and effectively.
 - Live: grokme.me | Test: staging.grokme.me
 
 **GROKME Arena:**
-- On-chain meme battles — launching Q1 2026
+- On-chain meme battles — launching Q1/Q2 2026
 - 5% protocol fee → GROK burned on every battle
 - Smart contracts complete (100/100 tests)
 
@@ -156,7 +156,7 @@ Open standard for eternal cultural preservation.
 • Post-human design
 • First capsule: LIVE since Nov 2025
 - 305M+ GROK burned
-- Arena: Q1 2026
+- Arena: Q1/Q2 2026
 
 Live: grokme.me
 GitHub: github.com/grokme-io/protocol
@@ -176,7 +176,7 @@ Key facts:
 ✅ Zero extraction
 ✅ Autonomous (no team)
 ✅ GROK NFT live (305M+ burned)
-✅ Arena launching Q1 2026
+✅ Arena launching Q1/Q2 2026
 
 Links:
 🌐 grokme.io

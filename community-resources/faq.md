@@ -312,7 +312,7 @@ Registry planned at grokme.io/registry
 ### Will there be more capsules?
 
 Active and upcoming:
-- **GROKME ARENA** (meme battles) — Smart contracts complete, launching Q1 2026. Every battle burns GROK.
+- **GROKME ARENA** (meme battles) — Smart contracts complete, launching Q1/Q2 2026. Every battle burns GROK.
 - **[REDACTED]** — Major new capsule in development. Significant GROK burn expected. Announcement soon.
 - **GROKME ART** (visual art) — Planned
 - **GROKME MUSIC** (audio) — Planned

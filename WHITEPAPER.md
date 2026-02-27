@@ -492,7 +492,7 @@ The protocol is complete and runs autonomously.
 
 **Version:** 2.0  
 **Last Updated:** February 2026  
-**Status:** Production — GROK NFT Live | Arena Launching Q1 2026  
+**Status:** Production — GROK NFT Live | Arena Launching Q1/Q2 2026  
 **License:** MIT
 
 ---

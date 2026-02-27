@@ -121,7 +121,7 @@ Audit the system → [`/docs/security/`](docs/security/) + [`/contracts/mainnet/
 
 Active and upcoming implementations:
 - **GROK NFT** (memes) - ✅ LIVE since November 2025 | 690 NFTs | 305M+ GROK burned
-- **GROKME ARENA** (meme battles) - Smart contracts complete (100/100 tests) | Launch Q1 2026
+- **GROKME ARENA** (meme battles) - Smart contracts complete (100/100 tests) | Launch Q1/Q2 2026
 - **[REDACTED]** (major new capsule) - In development | Significant GROK burn expected | Announcement soon
 - **GROKME UNIVERSAL** (all content) - Planned
 - **GROKME ART** (visual art) - Planned
@@ -513,5 +513,5 @@ Before using ANY implementation:
 
 **Last Updated:** February 2026  
 **Version:** 2.0.0  
-**Status:** Production — GROK NFT Live | Arena Launching Q1 2026
+**Status:** Production — GROK NFT Live | Arena Launching Q1/Q2 2026
 

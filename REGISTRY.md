@@ -40,7 +40,7 @@ Pre-built capsules by community contributors:
 
 ```
 GROK NFT           ✓ Verified    LIVE since Nov 2025    690 NFTs    305M+ GROK burned
-GROKME ARENA        ⏳ Coming     Q1 2026                Meme Battles  100/100 tests
+GROKME ARENA        ⏳ Coming     Q1/Q2 2026                Meme Battles  100/100 tests
 [REDACTED]          🔴 Dev        Q1-Q2 2026             Major capsule  Massive burns expected
 GROKME UNIVERSAL    ⏳ Planned    TBD                    All content
 GROKME ART          ⏳ Planned    TBD                    Visual art

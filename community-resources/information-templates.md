@@ -27,7 +27,7 @@ Think of it like HTTP for websites, but for eternal digital archives.
 - **Self-Sealing:** Capacity-based finality
 - **First Implementation:** GROK NFT (690 NFTs, memes) — LIVE since November 2025
 - **305M+ GROK burned** through utility
-- **GROKME Arena:** On-chain meme battles — coming Q1 2026
+- **GROKME Arena:** On-chain meme battles — coming Q1/Q2 2026
 
 ## How It Works
 
@@ -134,7 +134,7 @@ Try it: grokme.me
 On-chain meme battles.
 Every battle burns GROK.
 100/100 tests passing.
-Launching Q1 2026.
+Launching Q1/Q2 2026.
 
 9/ This is an open protocol.
 Not a project. Not a company.
@@ -199,7 +199,7 @@ Verifiable: etherscan.io/token/0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5
 
 305M+ GROK burned.
 
-Arena launching Q1 2026.
+Arena launching Q1/Q2 2026.
 
 The meme token that refused to die
 now ensures culture never dies.
@@ -232,7 +232,7 @@ Think HTTP for websites, but for eternal digital archives.
 - Novel use of token burns (GROK → 0x000...dEaD)
 - Self-sealing mechanism (mathematical finality)
 - First implementation LIVE since Nov 2025 (GROK NFT, 305M+ GROK burned)
-- GROKME Arena launching Q1 2026 (on-chain meme battles)
+- GROKME Arena launching Q1/Q2 2026 (on-chain meme battles)
 
 ## Key Facts
 
@@ -366,7 +366,7 @@ New open protocol for cultural preservation launched.
 ✅ Zero extraction (100% burn)
 ✅ Post-human (autonomous)
 ✅ First capsule: GROK NFT (LIVE, 305M+ burned)
-✅ Next: GROKME Arena (meme battles, Q1 2026)
+✅ Next: GROKME Arena (meme battles, Q1/Q2 2026)
 
 **Links:**
 🌐 Protocol: https://grokme.io
