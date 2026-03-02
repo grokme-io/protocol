@@ -64,17 +64,24 @@ Each contains:
 
 ### 2. GROKME ARENA
 
-**Status:** 🟡 Smart contracts complete — Launch Q1/Q2 2026
+**Directory:** [`/implementations/grokme-arena/`](implementations/grokme-arena/)  
+**Website:** [arena.grokme.me](https://arena.grokme.me)  
+**Status:** 🟡 **In active development — Challenges launching Q2 2026**
 
 **Quick Facts:**
-- **Type:** On-chain meme battle protocol
-- **Mechanic:** 1v1 meme duels with real token stakes, poker-style bidding, on-chain voting
+- **Arena Contract:** [`0x97a38be1cE4257b80CcEc01b0F2c71810624d803`](https://etherscan.io/address/0x97a38be1cE4257b80CcEc01b0F2c71810624d803)
+- **Trophy NFT:** [`0x33eAB69746De54Db570f21FE6099DBEf695d1C42`](https://etherscan.io/address/0x33eAB69746De54Db570f21FE6099DBEf695d1C42)
+- **Deploy Block:** 24571121 · March 2026
+- **Type:** On-chain meme battle protocol — Proof-of-Culture (PoC)
+- **Mechanic:** 1v1 meme duels with real token stakes, poker-style raise/call/fold bidding, on-chain snapshot-verified voting
 - **Burns:** 5% protocol fee on every stake → auto-swapped to GROK → burned. Every battle burns GROK regardless of which tokens fight.
-- **Settlement:** Permissionless. Winner meme → eternal Trophy NFT. Loser meme → destroyed. All tokens → 0x...dEaD.
-- **Contracts:** GrokmeArena (73 tests) + GrokmeArenaTrophy (27 tests) = 100/100 passing
-- **Security:** Renounced design. No admin key. No upgrade proxy. No kill switch.
+- **Settlement:** Permissionless. Winner meme → eternal Trophy NFT. Loser meme → destroyed. All tokens → `0x...dEaD`.
+- **Tests:** GrokmeArena (73) + GrokmeArenaTrophy (27) = 100/100 passing
+- **Security:** Renounced. No admin key. No upgrade proxy. No kill switch.
 
 **The utility expansion. The GROK burn machine.**
+
+[Read full documentation & whitepaper →](implementations/grokme-arena/ARENA.md)
 
 ---
 

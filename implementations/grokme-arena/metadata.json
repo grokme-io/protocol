@@ -1,0 +1,66 @@
+{
+  "implementation": {
+    "name": "GROKME Arena",
+    "website": "https://arena.grokme.me",
+    "status": "development",
+    "launchDate": "Q2 2026",
+    "submittedDate": "2026-03-02"
+  },
+
+  "capsule": {
+    "type": "battle-protocol",
+    "theme": "On-Chain Meme Battle — Proof-of-Culture",
+    "description": "The first application built on the GROKME Protocol beyond NFT minting. Meme communities compete 1v1 with real token stakes, poker-style bidding, and provably fair on-chain voting. Winner meme becomes an eternal Trophy NFT. All staked tokens burn. GROK burns on every battle regardless of which tokens fight."
+  },
+
+  "contracts": {
+    "arena": {
+      "address": "0x97a38be1cE4257b80CcEc01b0F2c71810624d803",
+      "network": "Ethereum Mainnet",
+      "chainId": 1,
+      "deployBlock": 24571121,
+      "verified": true,
+      "renounced": true,
+      "deploymentDate": "2026-03-02"
+    },
+    "trophy": {
+      "address": "0x33eAB69746De54Db570f21FE6099DBEf695d1C42",
+      "network": "Ethereum Mainnet",
+      "chainId": 1,
+      "verified": true,
+      "renounced": true
+    }
+  },
+
+  "economics": {
+    "protocolFee": "5%",
+    "protocolFeeDestination": "auto-swap to GROK → 0x000...dEaD",
+    "battleBurn": "100% of staked tokens from both sides → 0x000...dEaD",
+    "grokBurnTrigger": "Every battle — regardless of which tokens fight"
+  },
+
+  "mechanics": {
+    "challengeTypes": ["targeted", "open"],
+    "biddingStyle": "poker-raise-call-fold",
+    "votingType": "on-chain-snapshot-verified",
+    "antiSybil": true,
+    "settlementPermissionless": true,
+    "maxRaiseRounds": 3
+  },
+
+  "verification": {
+    "protocolCompliant": true,
+    "grokToken": "0x8390a1DA07e376ef7aDd4Be859BA74Fb83aA02D5",
+    "burnAddress": "0x000000000000000000000000000000000000dEaD",
+    "zeroExtraction": true,
+    "postHuman": true,
+    "contractTests": "100/100 passing"
+  },
+
+  "links": {
+    "whitepaper": "https://github.com/grokme-io/protocol/blob/main/implementations/grokme-arena/ARENA.md",
+    "arena": "https://arena.grokme.me",
+    "etherscan_arena": "https://etherscan.io/address/0x97a38be1cE4257b80CcEc01b0F2c71810624d803",
+    "etherscan_trophy": "https://etherscan.io/address/0x33eAB69746De54Db570f21FE6099DBEf695d1C42"
+  }
+}
