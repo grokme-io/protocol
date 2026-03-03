@@ -9,63 +9,75 @@ on:
     - cron: '0 8 * * 1'  # Every Monday 08:00 UTC
   workflow_dispatch:
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   tests:
     name: Hardhat Tests (145)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
+
       - run: npm ci
+
       - run: npx hardhat test
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: |
-            test-results.xml
-          if-no-files-found: ignore
 
   aderyn:
     name: Aderyn Static Analysis (Cyfrin)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-      - name: Install Aderyn
-        run: |
-          curl -L https://raw.githubusercontent.com/Cyfrin/aderyn/dev/cyfrinup/install | bash
-          echo "$HOME/.cyfrin/bin" >> $GITHUB_PATH
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
 
       - name: Run Aderyn
-        run: |
-          cyfrinup
-          aderyn . --output report.md --skip-update-check 2>&1 || true
+        uses: Cyfrin/aderyn-action@v1
+        with:
+          output: report.md
+        continue-on-error: true
 
       - name: Upload Aderyn Report
         uses: actions/upload-artifact@v4
         with:
-          name: aderyn-report
+          name: aderyn-security-report
           path: report.md
           retention-days: 90
 
       - name: Print summary
-        run: cat report.md || echo "No report generated"
+        if: always()
+        run: |
+          echo "## Aderyn Report" >> $GITHUB_STEP_SUMMARY
+          cat report.md >> $GITHUB_STEP_SUMMARY || echo "No report generated." >> $GITHUB_STEP_SUMMARY
 
   slither:
     name: Slither Static Analysis (Trail of Bits)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
+
       - run: npm ci
 
       - name: Run Slither
@@ -80,18 +92,17 @@ jobs:
         continue-on-error: true
 
       - name: Upload SARIF
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
+        if: always() && steps.slither.outputs.sarif != ''
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: ${{ steps.slither.outputs.sarif }}
         continue-on-error: true
 
-      - name: Create Slither Summary
+      - name: Slither summary
         if: always()
         run: |
           echo "## Slither Analysis" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          cat ${{ steps.slither.outputs.stdout }} >> $GITHUB_STEP_SUMMARY || echo "See logs above." >> $GITHUB_STEP_SUMMARY
+          echo "See job logs for full output." >> $GITHUB_STEP_SUMMARY
 
   summary:
     name: Security Summary
