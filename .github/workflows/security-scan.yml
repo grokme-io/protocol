@@ -47,9 +47,9 @@ jobs:
       - run: npm ci
 
       - name: Run Aderyn
-        uses: Cyfrin/aderyn-action@v1
+        uses: Cyfrin/aderyn-ci@v0
         with:
-          output: report.md
+          warn-on: any
         continue-on-error: true
 
       - name: Upload Aderyn Report
@@ -57,6 +57,7 @@ jobs:
         with:
           name: aderyn-security-report
           path: report.md
+          if-no-files-found: ignore
           retention-days: 90
 
       - name: Print summary
