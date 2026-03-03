@@ -451,7 +451,7 @@ contract GrokmeArena is ReentrancyGuard {
      * @notice Expire an unanswered challenge and refund the challenger.
      *         Callable by anyone after 72h. Fee is NOT refunded.
      */
-    function expireChallenge(uint256 battleId) external nonReentrant { // aderyn-fp(sends-ether-away-without-checking-address)
+    function expireChallenge(uint256 battleId) external nonReentrant {
         Battle storage b = battles[battleId];
         require(b.status == Status.Open, "Not open");
         require(block.timestamp > b.createdAt + CHALLENGE_EXPIRY, "Not expired yet");
@@ -460,7 +460,7 @@ contract GrokmeArena is ReentrancyGuard {
 
         // Refund remaining stake (fee already burned)
         if (b.challengerStake > 0) {
-            // aderyn-fp(sends-ether-away-without-checking-address): recipient is b.challenger set at challenge creation
+            // aderyn-fp-next-line sends-ether-away-without-checking-address
             IERC20(b.challengerToken).safeTransfer(b.challenger, b.challengerStake);
             emit StakeRefunded(battleId, b.challenger, b.challengerToken, b.challengerStake);
             b.challengerStake = 0;
@@ -523,7 +523,7 @@ contract GrokmeArena is ReentrancyGuard {
      *         Callable by ANYONE. Determines winner, burns all tokens.
      * @param battleId The battle to settle
      */
-    function settleBattle(uint256 battleId) external nonReentrant { // aderyn-fp(sends-ether-away-without-checking-address)
+    function settleBattle(uint256 battleId) external nonReentrant {
         Battle storage b = battles[battleId];
         require(b.status == Status.Battling, "Not in battle");
         require(block.timestamp >= b.battleEndsAt, "Voting still active");
@@ -546,12 +546,12 @@ contract GrokmeArena is ReentrancyGuard {
         uint256 opponentBurned = b.opponentStake;
 
         if (challengerBurned > 0) {
-            // aderyn-fp(sends-ether-away-without-checking-address)
+            // aderyn-fp-next-line sends-ether-away-without-checking-address
             IERC20(b.challengerToken).safeTransfer(DEAD_ADDRESS, challengerBurned);
             b.challengerStake = 0;
         }
         if (opponentBurned > 0) {
-            // aderyn-fp(sends-ether-away-without-checking-address)
+            // aderyn-fp-next-line sends-ether-away-without-checking-address
             IERC20(b.opponentToken).safeTransfer(DEAD_ADDRESS, opponentBurned);
             b.opponentStake = 0;
         }

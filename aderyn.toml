@@ -5,9 +5,3 @@ include = [
   "contracts/GrokmeArenaTrophy.sol",
   "contracts/mainnet/GrokNFT.sol"
 ]
-
-[detectors]
-exclude = [
-  "sends-ether-away-without-checking-address",
-  "reentrancy-state-change"
-]
