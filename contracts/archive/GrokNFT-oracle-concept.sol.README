@@ -1,0 +1,19 @@
+# ARCHIVED — Not Deployed
+
+This file is an unreleased concept version of GrokNFT featuring:
+- EIP-712 oracle signature scheme for token ID assignment
+- Dynamic burn rate per KB of content
+- BurnTx pre-registration system
+- Capacity-sealed at 6.9 GB
+
+## Why Archived
+
+The team chose the simpler Tier-based variant (no oracle) for the mainnet deployment
+because it eliminates the oracle as an attack surface entirely.
+
+## Deployed Contract
+
+The actual deployed GrokNFT contract is at:
+`0x5ee102ab33bcc5c49996fb48dea465ec6330e77d`
+
+Source: `contracts/mainnet/GrokNFT.sol`

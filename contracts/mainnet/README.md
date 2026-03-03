@@ -134,141 +134,79 @@ function totalSupply() external view returns (uint256)
 
 ## GrokNFT Contract
 
-### Reference Implementation
-
-**Purpose:** Full-featured example showing all baukasten modules  
-**Implementation:** GROK NFT (grokme.me)  
-**Address:** Deployed & verified on Etherscan  
+**Address:** [`0x5ee102ab33bcc5c49996fb48dea465ec6330e77d`](https://etherscan.io/address/0x5ee102ab33bcc5c49996fb48dea465ec6330e77d#code)  
 **Network:** Ethereum Mainnet  
-**Standard:** ERC-721 (NFT)  
-**Status:** 🟢 LIVE since November 2025 | 305M+ GROK burned
+**Standard:** ERC-721  
+**Status:** 🟢 LIVE since November 2025 | 305M+ GROK burned  
+**Audit package:** [`docs/security/audit/`](../../docs/security/audit/)
 
-**This is ONE implementation, not THE protocol.**
+### Design Philosophy
 
-For modular assembly, see [`/contracts/templates/`](../templates/)
+No oracle. No signature scheme. No off-chain dependencies.  
+The simplest possible design that achieves the goal: **burn GROK, mint NFT.**
+
+Chosen deliberately over the oracle-based concept (see `contracts/archive/`) because:
+- Zero oracle attack surface
+- Fully permissionless — no backend required to mint
+- Auditable in minutes, not hours
+- Mathematical supply guarantees (tier limits + global cap)
 
 ### Architecture
 
 ```solidity
-contract GrokNFT is 
-    ERC721URIStorage,      // NFT standard with metadata
-    ReentrancyGuard,       // Security against reentrancy
-    Ownable,               // Renounceable ownership
-    EIP712                 // Structured signature verification
-{
-    // Post-human design
+contract GrokNFT is ERC721URIStorage, Ownable, ReentrancyGuard {
+    // Permissionless burn-to-mint. No oracle. No proxy. No upgrade.
 }
 ```
 
-### Core Constants
+### Tiers
+
+| Tier | Supply | GROK Burn | Total GROK |
+|---|---|---|---|
+| COMMON | 469 | 6,900 | 3,236,100 |
+| RARE | 138 | 69,000 | 9,522,000 |
+| EPIC | 69 | 690,000 | 47,610,000 |
+| LEGENDARY | 10 | 1,000,000 | 10,000,000 |
+| DIVINE | 3 | 10,000,000 | 30,000,000 |
+| UNICORN | 1 | 100,000,000 | 100,000,000 |
+| **TOTAL** | **690** | | **~200M GROK** |
+
+### Mint Function
 
 ```solidity
-// GROK Integration
-uint256 public constant GROK_DECIMALS = 10**9;
-address public constant BURN_ADDRESS = 0x000...dEaD;
-address public immutable GROK_TOKEN_ADDRESS;
-
-// Capacity (Genesis-specific — V2 uses NFT count, not bytes)
-// uint256 public constant MAX_CAPACITY_BYTES = 6_900_000_000; // V1
-uint256 public constant MAX_NFTS = 690; // V2 (current)
-uint256 public constant MAX_CONTENT_SIZE = 12 * 1024 * 1024; // 12 MB per NFT
-
-// Burn Rates (Genesis-specific)
-uint256 public constant MIN_BURN_RATE_PER_KB = 1;
-uint256 public constant MAX_BURN_RATE_PER_KB = 1000;
-
-// Oracle System
-bytes32 public constant TOKEN_ID_ASSIGNMENT_TYPEHASH = keccak256(
-    "TokenIdAssignment(uint256 tokenId,uint256 burnRatePerKB,uint256 nonce,address userAddress,uint256 validUntil)"
-);
+function mint(string memory ipfsURI, uint256 grokBurnAmount)
+    external nonReentrant returns (uint256)
 ```
 
-### State Variables
+1. Check `currentTokenId < 690` (global cap)
+2. Match `grokBurnAmount` to tier constant — revert if no match (`"Invalid tier"`)
+3. Check per-tier supply cap
+4. `GROK_TOKEN.transferFrom(msg.sender, BURN_ADDRESS, grokBurnAmount)` — burn
+5. Mint ERC-721 with sequential `tokenId`, set IPFS URI
 
-```solidity
-IERC20Metadata public immutable grokToken;
-uint256 public highestMintedTokenId;
-address public immutable oracle;
-mapping(uint256 => bool) private _usedNonces;
-uint256 public totalGrokBurned;
-uint256 public totalBytesMinted;
-mapping(uint256 => uint256) public tokenBurnRate;
-mapping(bytes32 => uint256) public burnTxTotal;
-mapping(bytes32 => uint256) public burnTxUsed;
+### Security Properties
+
+✅ **Reentrancy** — `nonReentrant` on `mint()`  
+✅ **Integer overflow** — Solidity 0.8.20 built-in  
+✅ **No oracle** — zero off-chain trust assumption  
+✅ **No proxy** — immutable bytecode  
+✅ **No pause** — unstoppable  
+✅ **Burn verified** — `require(transferFrom(...))` — reverts on failure  
+✅ **Supply caps** — per-tier counters + global `currentTokenId < 690`
+
+Owner power: `setContractURI()` only (collection metadata for OpenSea). Zero effect on minting.
+
+### Integration
+
+```javascript
+// 1. Approve GROK
+const COMMON_BURN = ethers.parseUnits('6900', 9); // 6,900 GROK (9 decimals)
+await grokToken.approve(GROK_NFT_ADDRESS, COMMON_BURN);
+
+// 2. Mint
+const tx = await grokNFT.mint(ipfsURI, COMMON_BURN);
+await tx.wait();
 ```
-
-### Minting Function
-
-```solidity
-function grokMeWithSignedId(
-    uint256 tokenId,           // Oracle-assigned (prevents front-running)
-    string memory ipfsURI,     // Content location
-    uint256 contentSizeBytes,  // File size
-    uint256 burnRatePerKB,     // Creator's choice (1-1000)
-    uint256 nonce,             // Replay protection
-    uint256 validUntil,        // Signature expiration
-    bytes memory signature,    // Oracle signature
-    bytes32 burnTx             // Optional: pre-burned GROK reference
-) external nonReentrant capsuleOpen returns (uint256)
-```
-
-**Process:**
-
-1. **Validate inputs**
-   - URI not empty
-   - Size within limits
-   - Burn rate in range
-   - Capacity not exceeded
-   - Signature not expired
-   - Token ID not used
-
-2. **Verify oracle signature**
-   - EIP-712 structured data
-   - Recover signer from signature
-   - Confirm signer == oracle
-
-3. **Calculate GROK burn**
-   ```solidity
-   sizeKB = (contentSizeBytes + 1023) / 1024  // Round up
-   grokAmount = sizeKB * burnRatePerKB * GROK_DECIMALS
-   ```
-
-4. **Execute burn**
-   - Transfer GROK from user to 0x000...dEaD
-   - OR: Apply pre-burned contingent (if burnTx provided)
-
-5. **Mint NFT**
-   - ERC-721 safeMint
-   - Set token URI (IPFS)
-   - Record burn rate on-chain
-
-6. **Update state**
-   - Increment totalBytesMinted
-   - Increment totalGrokBurned
-   - Track highest token ID
-
-7. **Check seal condition**
-   - If totalBytesMinted >= MAX_CAPACITY → Emit CapsuleSealed
-
-### Security Model
-
-**What We Guard Against:**
-
-✅ **Reentrancy** - ReentrancyGuard on all state-changing functions  
-✅ **Replay attacks** - Nonce system prevents signature reuse  
-✅ **Front-running** - Oracle-signed token IDs prevent sniping  
-✅ **Integer overflow** - Solidity 0.8+ built-in checks  
-✅ **Signature forgery** - EIP-712 cryptographic verification
-
-**What We Deliberately Exclude:**
-
-❌ **Admin minting** - Removed for public version  
-❌ **Token ID reservation** - Removed for public version  
-❌ **Pre-burn contingent** - Mentioned but not exposed publicly  
-❌ **Pause function** - Truly unstoppable  
-❌ **Upgrade mechanism** - Permanently immutable
-
-**Rationale:** Maximum security through minimal attack surface.
 
 ### Events
 
@@ -277,207 +215,10 @@ event Grokked(
     uint256 indexed tokenId,
     address indexed creator,
     uint256 grokBurned,
-    uint256 burnRatePerKB,
-    uint256 contentSize,
-    string ipfsURI,
-    bytes32 burnTx
-);
-
-event CapsuleSealed(
-    uint256 totalBytesMinted,
-    uint256 totalGrokBurned,
-    uint256 totalTokens
-);
-
-event BurnTxRegistered(
-    bytes32 indexed txHash,
-    uint256 amount
+    string tier,
+    string ipfsURI
 );
 ```
-
-### View Functions
-
-```solidity
-// Capacity checks
-function isCapsuleOpen() external view returns (bool)
-function getRemainingCapacity() external view returns (uint256)
-function getCompletionPercentage() external view returns (uint256)
-
-// Burn tracking
-function getBurnTxAvailable(bytes32 txHash) external view returns (uint256)
-```
-
-### Post-Deployment Actions
-
-**Immediate (within 24 hours):**
-1. Verify contract on Etherscan
-2. Test minting functionality
-3. Monitor first 100 mints
-
-**Within 1 week:**
-1. Renounce ownership to 0x000...dEaD
-2. Confirm all admin functions disabled
-3. Announce post-human status
-
-**Forever:**
-Contract operates autonomously. No human intervention possible.
-
----
-
-## Deployment Checklist
-
-### Pre-Deployment
-
-- [ ] Complete security audit
-- [ ] Public review period (2 weeks minimum)
-- [ ] Testnet deployment + testing (>100 test mints)
-- [ ] Oracle infrastructure operational
-- [ ] IPFS Cluster ready
-- [ ] Frontend integrated
-- [ ] Documentation complete
-
-### Deployment
-
-- [ ] Deploy to Mainnet
-- [ ] Verify on Etherscan within 1 hour
-- [ ] Announce deployment
-- [ ] Monitor first 24 hours closely
-
-### Post-Deployment
-
-- [ ] Test first 10 mints manually
-- [ ] Confirm GROK burns to 0x000...dEaD
-- [ ] Verify IPFS pinning works
-- [ ] Renounce ownership (within 1 week)
-- [ ] Publish final audit report
-
----
-
-## For Developers
-
-### Integration Steps
-
-1. **Import ABIs**
-   ```javascript
-   import GROK_ABI from './abis/GROK.json';
-   import GROK_NFT_ABI from './abis/GrokNFT.json';
-   ```
-
-2. **Initialize contracts**
-   ```javascript
-   const grok = new ethers.Contract(GROK_ADDRESS, GROK_ABI, signer);
-   const genesis = new ethers.Contract(GROK_NFT_ADDRESS, GROK_NFT_ABI, signer);
-   ```
-
-3. **Request oracle signature**
-   ```javascript
-   const { tokenId, nonce, validUntil, signature } = 
-     await fetch('/api/oracle/request-token-id', {
-       method: 'POST',
-       body: JSON.stringify({ address, burnRate, contentSize })
-     }).then(r => r.json());
-   ```
-
-4. **Approve GROK**
-   ```javascript
-   const burnAmount = calculateBurn(contentSize, burnRate);
-   await grok.approve(GROK_NFT_ADDRESS, burnAmount);
-   ```
-
-5. **Mint NFT**
-   ```javascript
-   const tx = await genesis.grokMeWithSignedId(
-     tokenId,
-     ipfsURI,
-     contentSizeBytes,
-     burnRatePerKB,
-     nonce,
-     validUntil,
-     signature,
-     ethers.ZeroHash // or burnTx if using pre-burned GROK
-   );
-   await tx.wait();
-   ```
-
-### Gas Optimization
-
-**Gas usage estimates:**
-
-| Operation | Gas Estimate |
-|-----------|--------------|
-| Approve GROK | ~50,000 |
-| Single mint | ~180,000 |
-| Batch mint (10) | ~900,000 |
-| **Total single** | ~230,000 |
-
-**Optimization strategies:**
-- Batch minting reduces per-NFT gas usage
-- Infinite approval (once per user)
-- View functions are free (off-chain)
-
----
-
-## Security Audit
-
-**Status:** GROK NFT live and operational since November 2025
-
-**Scope:**
-- GROK Token integration
-- Burn mechanism correctness
-- Oracle signature verification
-- Reentrancy protection
-- Integer overflow/underflow
-- Capacity tracking accuracy
-- Self-sealing logic
-
-**GROK NFT:** Live, operational, 305M+ GROK burned
-**GrokmeArena:** 100/100 tests passing
-**GrokmeArenaTrophy:** 27/27 tests passing
-
-**Bug Bounty:** Planned
-
----
-
-## For Auditors
-
-### Critical Areas
-
-1. **Burn Mechanism**
-   - Ensure GROK actually burns (transferFrom → 0x000...dEaD)
-   - Verify calculation correctness (sizeKB × burnRate × decimals)
-   - Check burnTx system (pre-burned GROK tracking)
-
-2. **Oracle Security**
-   - EIP-712 signature verification
-   - Nonce replay protection
-   - Timestamp expiration
-   - Token ID uniqueness
-
-3. **Capacity Tracking**
-   - Accurate byte counting
-   - Overflow protection
-   - Seal condition correctness
-
-4. **Reentrancy**
-   - All state changes before external calls
-   - ReentrancyGuard on critical functions
-   - No recursive vulnerabilities
-
-5. **Admin Functions**
-   - Verify renouncement possible
-   - Confirm no hidden admin powers
-   - Check for proxy patterns (should be none)
-
-### Test Scenarios
-
-- [ ] Mint with minimum burn rate (1 GROK/KB)
-- [ ] Mint with maximum burn rate (1000 GROK/KB)
-- [ ] Attempt replay attack (reuse nonce)
-- [ ] Attempt signature forgery
-- [ ] Exceed capacity (should revert)
-- [ ] Mint after seal (should revert)
-- [ ] Transfer NFT (ERC-721 standard)
-- [ ] Renounce ownership (should succeed once)
 
 ---
 
@@ -486,9 +227,9 @@ Contract operates autonomously. No human intervention possible.
 Both contracts: MIT License
 
 **GROK Token:** Deployed 2023 (ownerless)  
-**GrokNFT:** Deployed November 2025 (renounced)  
-**GrokmeArena:** Complete, deployment pending  
-**GrokmeArenaTrophy:** Complete, deployment pending
+**GrokNFT:** Deployed November 2025  
+**GrokmeArena:** Deployed 2026-03-02 (renounced)  
+**GrokmeArenaTrophy:** Deployed 2026-03-02 (renounced)
 
 ---
 

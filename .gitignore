@@ -20,6 +20,12 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# Hardhat
+artifacts/
+cache/
+typechain/
+typechain-types/
+
 # Build outputs
 dist/
 build/

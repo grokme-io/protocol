@@ -1,0 +1,22 @@
+{
+  "name": "grokme-protocol",
+  "version": "1.0.0",
+  "description": "GROKME Protocol — Smart Contract Test Suite",
+  "scripts": {
+    "test": "npx hardhat test",
+    "test:nft": "npx hardhat test test/GrokNFT.test.js",
+    "test:arena": "npx hardhat test test/GrokmeArena.test.js",
+    "test:trophy": "npx hardhat test test/GrokmeArenaTrophy.test.js",
+    "compile": "npx hardhat compile",
+    "clean": "npx hardhat clean"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@openzeppelin/contracts": "^4.9.6",
+    "chai": "^4.5.0",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.17.1"
+  },
+  "license": "MIT"
+}
