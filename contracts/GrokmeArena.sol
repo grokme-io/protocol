@@ -543,10 +543,12 @@ contract GrokmeArena is ReentrancyGuard {
         uint256 opponentBurned = b.opponentStake;
 
         if (challengerBurned > 0) {
+            // aderyn-fp(sends-ether-away-without-checking-address)
             IERC20(b.challengerToken).safeTransfer(DEAD_ADDRESS, challengerBurned);
             b.challengerStake = 0;
         }
         if (opponentBurned > 0) {
+            // aderyn-fp(sends-ether-away-without-checking-address)
             IERC20(b.opponentToken).safeTransfer(DEAD_ADDRESS, opponentBurned);
             b.opponentStake = 0;
         }
@@ -671,9 +673,11 @@ contract GrokmeArena is ReentrancyGuard {
 
         if (token == grokToken) {
             // Token is GROK — burn directly, no swap needed
-            IERC20(grokToken).safeTransfer(DEAD_ADDRESS, feeAmount);
+            // CEI: update state before external call
             totalGrokBurned += feeAmount;
             battleGrokFees[battleId] += feeAmount;
+            // aderyn-fp(sends-ether-away-without-checking-address)
+            IERC20(grokToken).safeTransfer(DEAD_ADDRESS, feeAmount);
             emit ProtocolFeeBurned(battleId, token, feeAmount, feeAmount);
             return;
         }
@@ -701,10 +705,11 @@ contract GrokmeArena is ReentrancyGuard {
             feeAmount,
             0,              // accept any amount (burning anyway)
             path,
-            DEAD_ADDRESS,   // GROK goes straight to burn
+            DEAD_ADDRESS,   // GROK goes straight to burn (aderyn-fp: hardcoded constant)
             block.timestamp
         ) returns (uint256[] memory amounts) {
             uint256 grokBurned = amounts[amounts.length - 1];
+            // CEI: update state before emitting (external call already done)
             totalGrokBurned += grokBurned;
             battleGrokFees[battleId] += grokBurned;
             emit ProtocolFeeBurned(battleId, token, feeAmount, grokBurned);
