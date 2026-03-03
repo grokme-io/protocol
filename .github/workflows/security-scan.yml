@@ -71,6 +71,7 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.PINATA_JWT }}" \
             -F "file=@report.md;filename=aderyn-report-${{ github.sha }}.md" \
             https://api.pinata.cloud/pinning/pinFileToIPFS)
+          echo "Pinata MD response: $RESPONSE"
           HASH=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['IpfsHash'])" 2>/dev/null || echo "")
           if [ -n "$HASH" ]; then
             echo "ipfs_hash=$HASH" >> $GITHUB_OUTPUT
@@ -83,6 +84,7 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.PINATA_JWT }}" \
             -F "file=@docs/security/audit/index.html;filename=grokme-audit-report.html" \
             https://api.pinata.cloud/pinning/pinFileToIPFS)
+          echo "Pinata HTML response: $RESPONSE"
           HASH=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['IpfsHash'])" 2>/dev/null || echo "")
           if [ -n "$HASH" ]; then
             echo "ipfs_hash=$HASH" >> $GITHUB_OUTPUT
