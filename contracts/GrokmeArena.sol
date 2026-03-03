@@ -245,8 +245,10 @@ contract GrokmeArena is ReentrancyGuard {
         require(_trophyContract != address(0), "Invalid trophy address");
         grokToken = _grokToken;
         uniswapRouter = IUniswapV2Router02(_uniswapRouter);
-        weth = IUniswapV2Router02(_uniswapRouter).WETH(); // aderyn-fp(reentrancy)
-        trophyContract = IGrokmeArenaTrophy(_trophyContract); // aderyn-fp(reentrancy)
+        // aderyn-fp-next-line reentrancy-state-change
+        weth = IUniswapV2Router02(_uniswapRouter).WETH();
+        // aderyn-fp-next-line reentrancy-state-change
+        trophyContract = IGrokmeArenaTrophy(_trophyContract);
     }
 
     // ═══════════════════════════════════════════════════════════════════
@@ -493,11 +495,14 @@ contract GrokmeArena is ReentrancyGuard {
         uint256 voterBalance;
         if (b.challengerToken == b.opponentToken) {
             // Same-token duel: any holder can vote for either side
-            voterBalance = IERC20(b.challengerToken).balanceOf(msg.sender); // aderyn-fp(reentrancy)
+            // aderyn-fp-next-line reentrancy-state-change
+            voterBalance = IERC20(b.challengerToken).balanceOf(msg.sender);
         } else if (team == Team.Challenger) {
-            voterBalance = IERC20(b.challengerToken).balanceOf(msg.sender); // aderyn-fp(reentrancy)
+            // aderyn-fp-next-line reentrancy-state-change
+            voterBalance = IERC20(b.challengerToken).balanceOf(msg.sender);
         } else {
-            voterBalance = IERC20(b.opponentToken).balanceOf(msg.sender); // aderyn-fp(reentrancy)
+            // aderyn-fp-next-line reentrancy-state-change
+            voterBalance = IERC20(b.opponentToken).balanceOf(msg.sender);
         }
         require(voterBalance > 0, "Must hold team token");
         if (b.minVoterBalance > 0) {
