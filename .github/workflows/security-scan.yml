@@ -63,10 +63,30 @@ jobs:
           if-no-files-found: warn
           retention-days: 90
 
+      - name: Pin report to IPFS via Pinata
+        if: hashFiles('report.md') != ''
+        id: ipfs
+        run: |
+          RESPONSE=$(curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.PINATA_JWT }}" \
+            -F "file=@report.md;filename=aderyn-report-${{ github.sha }}.md" \
+            https://api.pinata.cloud/pinning/pinFileToIPFS)
+          HASH=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['IpfsHash'])" 2>/dev/null || echo "")
+          if [ -n "$HASH" ]; then
+            echo "ipfs_hash=$HASH" >> $GITHUB_OUTPUT
+            echo "IPFS_URL=https://gateway.pinata.cloud/ipfs/$HASH" >> $GITHUB_ENV
+          fi
+
       - name: Print summary
         if: always()
         run: |
-          echo "## Aderyn Report" >> $GITHUB_STEP_SUMMARY
+          echo "## Aderyn Security Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ steps.ipfs.outputs.ipfs_hash }}" ]; then
+            echo "**Permanent IPFS link (neutral hosting):**" >> $GITHUB_STEP_SUMMARY
+            echo "https://gateway.pinata.cloud/ipfs/${{ steps.ipfs.outputs.ipfs_hash }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
           cat report.md >> $GITHUB_STEP_SUMMARY || echo "No report generated." >> $GITHUB_STEP_SUMMARY
 
   slither:
