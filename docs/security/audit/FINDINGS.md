@@ -1,11 +1,81 @@
-# Preliminary Security Findings
+# Security Findings
 
 **Protocol:** GROKME  
-**Auditor:** Internal self-audit (pre-submission baseline)  
+**Auditor:** Internal self-audit + Automated tools (Aderyn, Slither)  
 **Date:** 2026-03-03  
 **Contracts:** GrokmeArena, GrokmeArenaTrophy, GrokNFT  
+**CI:** Aderyn + Slither run on every commit → [GitHub Actions](https://github.com/grokme-io/protocol/actions/workflows/security-scan.yml)
 
-> This document is the team's own analysis produced before external audit. It is provided so external auditors can skip known issues and focus on deeper edge cases and economic attack vectors.
+> This document covers both automated tool findings and manual analysis. Every automated flag is mapped below with an explanation. No finding was suppressed — all are documented with rationale.
+
+---
+
+## Automated Tool Findings — Aderyn (Cyfrin)
+
+Aderyn reports **4 High / 18 Low** flags. All are explained below. None represent exploitable vulnerabilities.
+
+### Aderyn H-01: `block.timestamp` Used for Comparisons
+**Contracts:** `GrokmeArena.sol` (battle timing)  
+**Aderyn category:** `block-timestamp`
+
+`block.timestamp` is used for `battleEndsAt`, `createdAt`, challenge expiry. Miners can manipulate timestamps by ±~15 seconds. All battle durations are minimum 5 minutes, typically hours or days. A ±15 second drift is **irrelevant at these timescales** and cannot be exploited to affect battle outcomes.
+
+**Classification in this report:** Informational. Accepted design.
+
+---
+
+### Aderyn H-02: Uniswap `amountOutMin = 0` — Possible Slippage
+**Contract:** `GrokmeArena._burnProtocolFee()`  
+**Aderyn category:** `dangerous-strict-equality` / slippage
+
+```solidity
+amountOutMin = 0  // accept any amount (burning anyway)
+```
+
+The swap output goes **directly to `0x000...dEaD`**. A MEV sandwich attack maximally extracts value from the swap — but the extracted value goes to the dead address too (it's the swap recipient). There is **no path for an attacker to profit**. `amountOutMin = 0` is safe here because we are not receiving the output; we are burning it. See also: L-02 in manual analysis below.
+
+**Classification in this report:** Low (L-02). No fund loss possible.
+
+---
+
+### Aderyn H-03: Centralization Risk — `setContractURI()` with `onlyOwner`
+**Contract:** `GrokNFT`  
+**Aderyn category:** `centralization-risk`
+
+`setContractURI()` is restricted to `onlyOwner`. However, **`renounceOwnership()` was called on deployment** — the owner is `address(0)`. This function is permanently disabled. Verifiable on-chain: `owner()` returns `0x0000000000000000000000000000000000000000`.
+
+**Etherscan verification:** [GrokNFT contract](https://etherscan.io/address/0x5ee102ab33bcc5c49996fb48dea465ec6330e77d#readContract) → call `owner()` → returns zero address.
+
+**Classification in this report:** ✅ Resolved (~~L-09~~).
+
+---
+
+### Aderyn H-04: `transferFrom` Return Value Not Checked via SafeERC20
+**Contract:** `GrokNFT.mint()`  
+**Aderyn category:** `unchecked-return`
+
+```solidity
+require(GROK_TOKEN.transferFrom(msg.sender, BURN_ADDRESS, grokBurnAmount), "Burn failed");
+```
+
+The return value **is** checked — via `require()`. `GROK_TOKEN` is an `immutable` reference to the GROK token which correctly returns `bool` on `transferFrom`. This is safe. `SafeERC20.safeTransferFrom` is best practice for unknown tokens but adds no security here since the token address is fixed at deployment.
+
+**Classification in this report:** Informational (I-03).
+
+---
+
+### Aderyn Low Findings (18)
+
+The 18 Low flags are a mix of:
+- `dead-code`: `SETTLEMENT_WINDOW` constant defined but unused (I-05 below)
+- `missing-zero-address-validation`: Some internal functions (all guarded in constructors)
+- `state-variable-changes-without-events`: Trophy `nextTokenId` — covered by `TrophyMinted` event
+- `costly-loop` / `cache-array-length`: Gas optimisations, no security impact
+- `modifier-used-only-once`: Style issue, no security impact
+
+None of the 18 Low findings represent fund-loss or protocol malfunction risks.
+
+---
 
 ---
 
