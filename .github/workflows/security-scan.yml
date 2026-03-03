@@ -52,12 +52,8 @@ jobs:
             https://github.com/Cyfrin/aderyn/releases/latest/download/aderyn-installer.sh | sh
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      - name: Run Aderyn (exclude archive + test contracts)
-        run: |
-          aderyn \
-            --exclude contracts/archive,contracts/test \
-            --output report.md \
-            . 2>&1 || true
+      - name: Run Aderyn
+        run: aderyn --output report.md . 2>&1 || true
 
       - name: Upload Aderyn Report
         uses: actions/upload-artifact@v4

@@ -3,6 +3,7 @@ pragma solidity 0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -14,6 +15,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  *      Owner retains setContractURI() only — zero mint control.
  */
 contract GrokNFT is ERC721URIStorage, Ownable, ReentrancyGuard {
+    using SafeERC20 for IERC20;
     
     uint256 constant GROK_DECIMALS = 1e9;
     address constant BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
@@ -105,7 +107,7 @@ contract GrokNFT is ERC721URIStorage, Ownable, ReentrancyGuard {
             revert("Invalid tier");
         }
         
-        require(GROK_TOKEN.transferFrom(msg.sender, BURN_ADDRESS, grokBurnAmount), "Burn failed");
+        GROK_TOKEN.safeTransferFrom(msg.sender, BURN_ADDRESS, grokBurnAmount);
         
         uint256 tokenId = ++currentTokenId;
         totalGrokBurned += grokBurnAmount;

@@ -697,6 +697,7 @@ contract GrokmeArena is ReentrancyGuard {
 
         // amountOutMin = 0 because we're burning the output anyway.
         // MEV/sandwich attacks are irrelevant — the GROK goes to dead address.
+        // aderyn-ignore-next-line
         try uniswapRouter.swapExactTokensForTokens(
             feeAmount,
             0,              // accept any amount (burning anyway)

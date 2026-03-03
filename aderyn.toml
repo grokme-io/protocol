@@ -1,0 +1,7 @@
+version = 1
+root = "."
+exclude = [
+  "contracts/archive",
+  "contracts/test",
+  "node_modules"
+]
