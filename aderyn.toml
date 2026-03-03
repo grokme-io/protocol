@@ -9,5 +9,5 @@ include = [
 [detectors]
 exclude = [
   "sends-ether-away-without-checking-address",
-  "state-change-after-external-call"
+  "reentrancy-state-change"
 ]
