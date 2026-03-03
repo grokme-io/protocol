@@ -10,8 +10,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   security-events: write
+  pages: write
+  id-token: write
 
 jobs:
   tests:
@@ -76,28 +78,28 @@ jobs:
             echo "ipfs_hash=$HASH" >> $GITHUB_OUTPUT
           fi
 
-      - name: Pin audit report page (HTML) to IPFS via Pinata
-        id: ipfs_html
+      - name: Deploy audit page to GitHub Pages
         run: |
-          RESPONSE=$(curl -s -X POST \
-            -H "Authorization: Bearer ${{ secrets.PINATA_JWT_PROTOCOL }}" \
-            -F "file=@docs/security/audit/index.html;filename=grokme-audit-report.html" \
-            https://api.pinata.cloud/pinning/pinFileToIPFS)
-          HASH=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['IpfsHash'])" 2>/dev/null || echo "")
-          if [ -n "$HASH" ]; then
-            echo "ipfs_hash=$HASH" >> $GITHUB_OUTPUT
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages 2>/dev/null || true
+          git checkout gh-pages 2>/dev/null || git checkout --orphan gh-pages
+          git rm -rf . --quiet 2>/dev/null || true
+          git checkout ${{ github.sha }} -- docs/security/audit/index.html
+          mkdir -p security/audit
+          cp docs/security/audit/index.html security/audit/index.html
+          git add security/audit/index.html
+          git commit -m "deploy: audit report from ${{ github.sha }}" --allow-empty
+          git push origin gh-pages --force
 
       - name: Print summary
         if: always()
         run: |
           echo "## GROKME Security Audit" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -n "${{ steps.ipfs_html.outputs.ipfs_hash }}" ]; then
-            echo "### 🔗 Audit Report Page (IPFS — shareable link)" >> $GITHUB_STEP_SUMMARY
-            echo "https://gateway.pinata.cloud/ipfs/${{ steps.ipfs_html.outputs.ipfs_hash }}" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-          fi
+          echo "### 🔗 Audit Report Page (GitHub Pages)" >> $GITHUB_STEP_SUMMARY
+          echo "https://grokme-io.github.io/protocol/security/audit/" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           if [ -n "${{ steps.ipfs_md.outputs.ipfs_hash }}" ]; then
             echo "### 📄 Raw Aderyn Report (IPFS)" >> $GITHUB_STEP_SUMMARY
             echo "https://gateway.pinata.cloud/ipfs/${{ steps.ipfs_md.outputs.ipfs_hash }}" >> $GITHUB_STEP_SUMMARY
