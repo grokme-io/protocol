@@ -63,9 +63,9 @@ jobs:
           if-no-files-found: warn
           retention-days: 90
 
-      - name: Pin report to IPFS via Pinata
+      - name: Pin Aderyn report (MD) to IPFS via Pinata
         if: hashFiles('report.md') != ''
-        id: ipfs
+        id: ipfs_md
         run: |
           RESPONSE=$(curl -s -X POST \
             -H "Authorization: Bearer ${{ secrets.PINATA_JWT }}" \
@@ -74,19 +74,36 @@ jobs:
           HASH=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['IpfsHash'])" 2>/dev/null || echo "")
           if [ -n "$HASH" ]; then
             echo "ipfs_hash=$HASH" >> $GITHUB_OUTPUT
-            echo "IPFS_URL=https://gateway.pinata.cloud/ipfs/$HASH" >> $GITHUB_ENV
+          fi
+
+      - name: Pin audit report page (HTML) to IPFS via Pinata
+        id: ipfs_html
+        run: |
+          RESPONSE=$(curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.PINATA_JWT }}" \
+            -F "file=@docs/security/audit/index.html;filename=grokme-audit-report.html" \
+            https://api.pinata.cloud/pinning/pinFileToIPFS)
+          HASH=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['IpfsHash'])" 2>/dev/null || echo "")
+          if [ -n "$HASH" ]; then
+            echo "ipfs_hash=$HASH" >> $GITHUB_OUTPUT
           fi
 
       - name: Print summary
         if: always()
         run: |
-          echo "## Aderyn Security Report" >> $GITHUB_STEP_SUMMARY
+          echo "## GROKME Security Audit" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -n "${{ steps.ipfs.outputs.ipfs_hash }}" ]; then
-            echo "**Permanent IPFS link (neutral hosting):**" >> $GITHUB_STEP_SUMMARY
-            echo "https://gateway.pinata.cloud/ipfs/${{ steps.ipfs.outputs.ipfs_hash }}" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ steps.ipfs_html.outputs.ipfs_hash }}" ]; then
+            echo "### 🔗 Audit Report Page (IPFS — shareable link)" >> $GITHUB_STEP_SUMMARY
+            echo "https://gateway.pinata.cloud/ipfs/${{ steps.ipfs_html.outputs.ipfs_hash }}" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi
+          if [ -n "${{ steps.ipfs_md.outputs.ipfs_hash }}" ]; then
+            echo "### 📄 Raw Aderyn Report (IPFS)" >> $GITHUB_STEP_SUMMARY
+            echo "https://gateway.pinata.cloud/ipfs/${{ steps.ipfs_md.outputs.ipfs_hash }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "---" >> $GITHUB_STEP_SUMMARY
           cat report.md >> $GITHUB_STEP_SUMMARY || echo "No report generated." >> $GITHUB_STEP_SUMMARY
 
   slither:
