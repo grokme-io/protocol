@@ -46,18 +46,25 @@ jobs:
 
       - run: npm ci
 
-      - name: Run Aderyn
-        uses: Cyfrin/aderyn-ci@v0
-        with:
-          warn-on: any
-        continue-on-error: true
+      - name: Install Aderyn CLI
+        run: |
+          curl --proto '=https' --tlsv1.2 -LsSf \
+            https://github.com/Cyfrin/aderyn/releases/latest/download/aderyn-installer.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Run Aderyn (exclude archive + test contracts)
+        run: |
+          aderyn \
+            --exclude contracts/archive,contracts/test \
+            --output report.md \
+            . 2>&1 || true
 
       - name: Upload Aderyn Report
         uses: actions/upload-artifact@v4
         with:
           name: aderyn-security-report
           path: report.md
-          if-no-files-found: ignore
+          if-no-files-found: warn
           retention-days: 90
 
       - name: Print summary
