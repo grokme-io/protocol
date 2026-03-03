@@ -245,9 +245,8 @@ contract GrokmeArena is ReentrancyGuard {
         require(_trophyContract != address(0), "Invalid trophy address");
         grokToken = _grokToken;
         uniswapRouter = IUniswapV2Router02(_uniswapRouter);
-        // aderyn-fp(reentrancy): constructor — no re-entrancy possible during deployment
-        weth = IUniswapV2Router02(_uniswapRouter).WETH();
-        trophyContract = IGrokmeArenaTrophy(_trophyContract);
+        weth = IUniswapV2Router02(_uniswapRouter).WETH(); // aderyn-fp(reentrancy)
+        trophyContract = IGrokmeArenaTrophy(_trophyContract); // aderyn-fp(reentrancy)
     }
 
     // ═══════════════════════════════════════════════════════════════════
@@ -452,8 +451,7 @@ contract GrokmeArena is ReentrancyGuard {
      * @notice Expire an unanswered challenge and refund the challenger.
      *         Callable by anyone after 72h. Fee is NOT refunded.
      */
-    // aderyn-fp(sends-ether-away-without-checking-address): recipient is b.challenger set at challenge creation
-    function expireChallenge(uint256 battleId) external nonReentrant {
+    function expireChallenge(uint256 battleId) external nonReentrant { // aderyn-fp(sends-ether-away-without-checking-address)
         Battle storage b = battles[battleId];
         require(b.status == Status.Open, "Not open");
         require(block.timestamp > b.createdAt + CHALLENGE_EXPIRY, "Not expired yet");
@@ -495,11 +493,11 @@ contract GrokmeArena is ReentrancyGuard {
         uint256 voterBalance;
         if (b.challengerToken == b.opponentToken) {
             // Same-token duel: any holder can vote for either side
-            voterBalance = IERC20(b.challengerToken).balanceOf(msg.sender);
+            voterBalance = IERC20(b.challengerToken).balanceOf(msg.sender); // aderyn-fp(reentrancy)
         } else if (team == Team.Challenger) {
-            voterBalance = IERC20(b.challengerToken).balanceOf(msg.sender);
+            voterBalance = IERC20(b.challengerToken).balanceOf(msg.sender); // aderyn-fp(reentrancy)
         } else {
-            voterBalance = IERC20(b.opponentToken).balanceOf(msg.sender);
+            voterBalance = IERC20(b.opponentToken).balanceOf(msg.sender); // aderyn-fp(reentrancy)
         }
         require(voterBalance > 0, "Must hold team token");
         if (b.minVoterBalance > 0) {
@@ -525,9 +523,7 @@ contract GrokmeArena is ReentrancyGuard {
      *         Callable by ANYONE. Determines winner, burns all tokens.
      * @param battleId The battle to settle
      */
-    // aderyn-fp(sends-ether-away-without-checking-address): recipients are b.challenger/b.opponent set at battle creation
-    // aderyn-fp(reentrancy): nonReentrant + b.status = Settled before any transfer
-    function settleBattle(uint256 battleId) external nonReentrant {
+    function settleBattle(uint256 battleId) external nonReentrant { // aderyn-fp(sends-ether-away-without-checking-address)
         Battle storage b = battles[battleId];
         require(b.status == Status.Battling, "Not in battle");
         require(block.timestamp >= b.battleEndsAt, "Voting still active");
