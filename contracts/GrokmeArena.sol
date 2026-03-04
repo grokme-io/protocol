@@ -453,6 +453,7 @@ contract GrokmeArena is ReentrancyGuard {
      * @notice Expire an unanswered challenge and refund the challenger.
      *         Callable by anyone after 72h. Fee is NOT refunded.
      */
+    // aderyn-fp-next-line sends-ether-away-without-checking-address
     function expireChallenge(uint256 battleId) external nonReentrant {
         Battle storage b = battles[battleId];
         require(b.status == Status.Open, "Not open");
@@ -528,6 +529,7 @@ contract GrokmeArena is ReentrancyGuard {
      *         Callable by ANYONE. Determines winner, burns all tokens.
      * @param battleId The battle to settle
      */
+    // aderyn-fp-next-line sends-ether-away-without-checking-address
     function settleBattle(uint256 battleId) external nonReentrant {
         Battle storage b = battles[battleId];
         require(b.status == Status.Battling, "Not in battle");
@@ -684,7 +686,7 @@ contract GrokmeArena is ReentrancyGuard {
             // CEI: update state before external call
             totalGrokBurned += feeAmount;
             battleGrokFees[battleId] += feeAmount;
-            // aderyn-fp(sends-ether-away-without-checking-address)
+            // aderyn-fp-next-line sends-ether-away-without-checking-address
             IERC20(grokToken).safeTransfer(DEAD_ADDRESS, feeAmount);
             emit ProtocolFeeBurned(battleId, token, feeAmount, feeAmount);
             return;
