@@ -54,59 +54,55 @@ jobs:
             https://github.com/Cyfrin/aderyn/releases/latest/download/aderyn-installer.sh | sh
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      - name: Run Aderyn
-        run: aderyn --output report.md . 2>&1 || true
+      - name: Aderyn — GrokmeArena.sol
+        run: aderyn --src contracts/GrokmeArena.sol --output report-arena.md . 2>&1 || true
 
-      - name: Upload Aderyn Report
+      - name: Aderyn — GrokmeArenaTrophy.sol
+        run: aderyn --src contracts/GrokmeArenaTrophy.sol --output report-trophy.md . 2>&1 || true
+
+      - name: Aderyn — GrokNFT.sol
+        run: aderyn --src contracts/mainnet/GrokNFT.sol --output report-groknft.md . 2>&1 || true
+
+      - name: Upload Aderyn Reports
         uses: actions/upload-artifact@v4
         with:
-          name: aderyn-security-report
-          path: report.md
+          name: aderyn-security-reports
+          path: |
+            report-arena.md
+            report-trophy.md
+            report-groknft.md
           if-no-files-found: warn
           retention-days: 90
-
-      - name: Pin Aderyn report (MD) to IPFS via Pinata
-        if: hashFiles('report.md') != ''
-        id: ipfs_md
-        run: |
-          RESPONSE=$(curl -s -X POST \
-            -H "Authorization: Bearer ${{ secrets.PINATA_JWT_PROTOCOL }}" \
-            -F "file=@report.md;filename=aderyn-report-${{ github.sha }}.md" \
-            https://api.pinata.cloud/pinning/pinFileToIPFS)
-          HASH=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['IpfsHash'])" 2>/dev/null || echo "")
-          if [ -n "$HASH" ]; then
-            echo "ipfs_hash=$HASH" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Deploy audit page to GitHub Pages
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin gh-pages 2>/dev/null || true
-          git checkout gh-pages 2>/dev/null || git checkout --orphan gh-pages
-          git rm -rf . --quiet 2>/dev/null || true
-          git checkout ${{ github.sha }} -- docs/security/audit/index.html
-          mkdir -p security/audit
-          cp docs/security/audit/index.html security/audit/index.html
-          git add security/audit/index.html
-          git commit -m "deploy: audit report from ${{ github.sha }}" --allow-empty
-          git push origin gh-pages --force
 
       - name: Print summary
         if: always()
         run: |
-          echo "## GROKME Security Audit" >> $GITHUB_STEP_SUMMARY
+          echo "## GROKME Security Audit — Aderyn (Cyfrin)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 🔗 Audit Report Page (GitHub Pages)" >> $GITHUB_STEP_SUMMARY
-          echo "https://grokme-io.github.io/protocol/security/audit/" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 [grokme.io/security/audit](https://grokme.io/security/audit)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -n "${{ steps.ipfs_md.outputs.ipfs_hash }}" ]; then
-            echo "### 📄 Raw Aderyn Report (IPFS)" >> $GITHUB_STEP_SUMMARY
-            echo "https://gateway.pinata.cloud/ipfs/${{ steps.ipfs_md.outputs.ipfs_hash }}" >> $GITHUB_STEP_SUMMARY
+
+          for CONTRACT in "GrokmeArena:report-arena.md" "GrokmeArenaTrophy:report-trophy.md" "GrokNFT:report-groknft.md"; do
+            NAME="${CONTRACT%%:*}"
+            FILE="${CONTRACT##*:}"
+            echo "### $NAME" >> $GITHUB_STEP_SUMMARY
+            if [ -f "$FILE" ]; then
+              grep "^| High\|^| Low\|^| Medium\|^| Critical" "$FILE" | head -4 >> $GITHUB_STEP_SUMMARY || true
+            else
+              echo "No report generated." >> $GITHUB_STEP_SUMMARY
+            fi
             echo "" >> $GITHUB_STEP_SUMMARY
-          fi
+          done
+
           echo "---" >> $GITHUB_STEP_SUMMARY
-          cat report.md >> $GITHUB_STEP_SUMMARY || echo "No report generated." >> $GITHUB_STEP_SUMMARY
+          echo "### Full Reports" >> $GITHUB_STEP_SUMMARY
+          for CONTRACT in "GrokmeArena:report-arena.md" "GrokmeArenaTrophy:report-trophy.md" "GrokNFT:report-groknft.md"; do
+            NAME="${CONTRACT%%:*}"
+            FILE="${CONTRACT##*:}"
+            echo "#### $NAME" >> $GITHUB_STEP_SUMMARY
+            cat "$FILE" >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "No report." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          done
 
   slither:
     name: Slither Static Analysis (Trail of Bits)
