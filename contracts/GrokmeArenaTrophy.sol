@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity 0.8.28;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 /**
  * @title GrokmeArenaTrophy
+ * @author GROKME Protocol (grokme.me)
  * @notice Battle Trophy NFTs — eternal artifacts of cultural victory.
  *
  * Each token represents a winning meme from a GROKME Arena battle, permanently
@@ -35,6 +36,7 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
     //  STRUCTS
     // ═══════════════════════════════════════════════════════════════════
 
+    /// @notice Immutable on-chain metadata for a battle trophy.
     struct TrophyData {
         // ─── Battle Reference ───
         uint256 battleId;                  // On-chain battle ID from GrokmeArena
@@ -63,6 +65,27 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
         uint256 mintedAt;                  // Block timestamp of trophy mint
     }
 
+    /// @notice Trophy type discriminator.
+    enum TrophyKind {
+        None,
+        Battle,
+        Tournament
+    }
+
+    /// @notice Immutable on-chain metadata for a tournament trophy.
+    struct TournamentTrophyData {
+        uint256 tournamentId;
+        string title;
+        uint8 size;
+        address winner;
+        address winnerToken;
+        bytes32 winnerMemeHash;
+        uint256 winnerTokensBurned;
+        uint256 grokBurnedFromFees;
+        uint256 finaleBattleId;
+        uint256 mintedAt;
+    }
+
     // ═══════════════════════════════════════════════════════════════════
     //  STATE
     // ═══════════════════════════════════════════════════════════════════
@@ -73,8 +96,17 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
     /// @notice battleId → tokenId mapping (one trophy per battle)
     mapping(uint256 => uint256) public battleToToken;
 
+    /// @notice tournamentId => tokenId mapping (one trophy per tournament, +1 offset).
+    mapping(uint256 => uint256) public tournamentToToken;
+
     /// @notice tokenId → full trophy data (on-chain forever)
     mapping(uint256 => TrophyData) public trophies;
+
+    /// @notice tokenId => full tournament trophy data (on-chain forever).
+    mapping(uint256 => TournamentTrophyData) public tournamentTrophies;
+
+    /// @notice tokenId => trophy kind discriminator.
+    mapping(uint256 => TrophyKind) public trophyKinds;
 
     /// @notice Total trophies minted
     uint256 public totalTrophies;
@@ -83,6 +115,7 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
     //  EVENTS
     // ═══════════════════════════════════════════════════════════════════
 
+    /// @notice Emitted when a battle trophy is minted.
     event TrophyMinted(
         uint256 indexed tokenId,
         uint256 indexed battleId,
@@ -94,12 +127,23 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
         uint256 winnerTokensBurned,
         uint256 loserTokensBurned
     );
+    /// @notice Emitted when a tournament trophy is minted.
+    event TournamentTrophyMinted(
+        uint256 indexed tokenId,
+        uint256 indexed tournamentId,
+        address indexed winner,
+        address winnerToken,
+        uint256 winnerTokensBurned,
+        uint256 grokBurnedFromFees,
+        uint256 finaleBattleId
+    );
 
     // ═══════════════════════════════════════════════════════════════════
     //  CONSTRUCTOR
     // ═══════════════════════════════════════════════════════════════════
 
     /**
+     * @notice Deploy the immutable trophy contract.
      * @param _arenaMinter Address of the GrokmeArena contract (only minter, immutable)
      */
     constructor(address _arenaMinter) ERC721("GROKME Arena Trophy", "TROPHY") {
@@ -149,9 +193,14 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
         require(msg.sender == arenaMinter, "Only Arena can mint");
         require(battleToToken[battleId] == 0, "Trophy already minted for this battle");
         require(winner != address(0), "Invalid winner");
+        require(winnerToken != address(0), "Invalid winner token");
+        require(loser != address(0), "Invalid loser");
+        require(loserToken != address(0), "Invalid loser token");
+        require(winnerMemeHash != bytes32(0), "Invalid meme hash");
 
         tokenId = nextTokenId++;
         totalTrophies++;
+        trophyKinds[tokenId] = TrophyKind.Battle;
 
         // Store full battle data on-chain — forever
         trophies[tokenId] = TrophyData({
@@ -191,6 +240,73 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
         );
     }
 
+    /**
+     * @notice Mint a Tournament Trophy NFT for the winning participant.
+     *         Only callable by the GrokmeArena contract.
+     *
+     * @param tournamentId       On-chain tournament ID
+     * @param title              Human-readable tournament title
+     * @param size               Number of participants (4, 8, or 16)
+     * @param winner             Winning participant wallet
+     * @param winnerToken        Winner's community token
+     * @param winnerMemeHash     Content hash of winner's final meme
+     * @param winnerTokensBurned Total winner-token amount burned in finale
+     * @param grokBurnedFromFees Total GROK burned via tournament protocol fees
+     * @param finaleBattleId     Battle ID of the finale match
+     * @param tokenURI           IPFS/Arweave URI for the winning meme
+     */
+    function mintTournamentTrophy(
+        uint256 tournamentId,
+        string calldata title,
+        uint8 size,
+        address winner,
+        address winnerToken,
+        bytes32 winnerMemeHash,
+        uint256 winnerTokensBurned,
+        uint256 grokBurnedFromFees,
+        uint256 finaleBattleId,
+        string calldata tokenURI
+    ) external nonReentrant returns (uint256 tokenId) {
+        require(msg.sender == arenaMinter, "Only Arena can mint");
+        require(tournamentToToken[tournamentId] == 0, "Trophy already minted for this tournament");
+        require(winner != address(0), "Invalid winner");
+        require(bytes(title).length != 0, "Title required");
+        require(winnerToken != address(0), "Invalid winner token");
+        require(winnerMemeHash != bytes32(0), "Invalid meme hash");
+
+        tokenId = nextTokenId++;
+        totalTrophies++;
+        trophyKinds[tokenId] = TrophyKind.Tournament;
+
+        tournamentTrophies[tokenId] = TournamentTrophyData({
+            tournamentId: tournamentId,
+            title: title,
+            size: size,
+            winner: winner,
+            winnerToken: winnerToken,
+            winnerMemeHash: winnerMemeHash,
+            winnerTokensBurned: winnerTokensBurned,
+            grokBurnedFromFees: grokBurnedFromFees,
+            finaleBattleId: finaleBattleId,
+            mintedAt: block.timestamp
+        });
+
+        tournamentToToken[tournamentId] = tokenId + 1;
+
+        _mint(winner, tokenId);
+        _setTokenURI(tokenId, tokenURI);
+
+        emit TournamentTrophyMinted(
+            tokenId,
+            tournamentId,
+            winner,
+            winnerToken,
+            winnerTokensBurned,
+            grokBurnedFromFees,
+            finaleBattleId
+        );
+    }
+
     // ═══════════════════════════════════════════════════════════════════
     //  SET TOKEN URI (Arena-only, for post-mint metadata)
     // ═══════════════════════════════════════════════════════════════════
@@ -210,6 +326,7 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
             msg.sender == arenaMinter || msg.sender == ownerOf(tokenId),
             "Only Arena or token owner"
         );
+        require(bytes(uri).length != 0, "Empty URI");
         _setTokenURI(tokenId, uri);
     }
 
@@ -219,9 +336,11 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
 
     /**
      * @notice Get the full trophy data for a token
+     * @param tokenId The token ID (must be a Battle-kind trophy).
      */
     function getTrophy(uint256 tokenId) external view returns (TrophyData memory) {
         require(tokenId < nextTokenId, "Token does not exist");
+        require(trophyKinds[tokenId] == TrophyKind.Battle, "Not battle trophy");
         return trophies[tokenId];
     }
 
@@ -237,13 +356,43 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
 
     /**
      * @notice Check if a trophy has been minted for a battle
+     * @return exists True if a trophy exists for the battle.
      */
     function hasTrophy(uint256 battleId) external view returns (bool) {
         return battleToToken[battleId] > 0;
     }
 
     /**
+     * @notice Get the full tournament trophy data for a token.
+     * @param tokenId The token ID (must be a Tournament-kind trophy).
+     */
+    function getTournamentTrophy(uint256 tokenId) external view returns (TournamentTrophyData memory) {
+        require(tokenId < nextTokenId, "Token does not exist");
+        require(trophyKinds[tokenId] == TrophyKind.Tournament, "Not tournament trophy");
+        return tournamentTrophies[tokenId];
+    }
+
+    /**
+     * @notice Get the trophy token ID for a given tournament.
+     * @return tokenId The token ID (reverts if no trophy exists for this tournament).
+     */
+    function getTrophyForTournament(uint256 tournamentId) external view returns (uint256) {
+        uint256 stored = tournamentToToken[tournamentId];
+        require(stored > 0, "No trophy for this tournament");
+        return stored - 1;
+    }
+
+    /**
+     * @notice Check if a trophy has been minted for a tournament.
+     * @return exists True if a trophy exists for the tournament.
+     */
+    function hasTournamentTrophy(uint256 tournamentId) external view returns (bool) {
+        return tournamentToToken[tournamentId] > 0;
+    }
+
+    /**
      * @notice Get battle-level summary (useful for verification scripts)
+     * @param tokenId The token ID (must be a Battle-kind trophy).
      */
     function getBattleSummary(uint256 tokenId) external view returns (
         uint256 battleId,
@@ -255,6 +404,7 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
         uint256 grokBurnedFromFees
     ) {
         require(tokenId < nextTokenId, "Token does not exist");
+        require(trophyKinds[tokenId] == TrophyKind.Battle, "Not battle trophy");
         TrophyData storage t = trophies[tokenId];
         return (
             t.battleId,
@@ -267,11 +417,4 @@ contract GrokmeArenaTrophy is ERC721URIStorage, ReentrancyGuard {
         );
     }
 
-    // ═══════════════════════════════════════════════════════════════════
-    //  INTERNAL
-    // ═══════════════════════════════════════════════════════════════════
-
-    function _battleNotMinted(uint256 battleId) internal view returns (bool) {
-        return battleToToken[battleId] == 0;
-    }
 }
