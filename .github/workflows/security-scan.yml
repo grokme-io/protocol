@@ -54,8 +54,8 @@ jobs:
             https://github.com/Cyfrin/aderyn/releases/latest/download/aderyn-installer.sh | sh
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      - name: Aderyn — GrokmeArena.sol
-        run: aderyn --src contracts/GrokmeArena.sol --output report-arena.md . 2>&1 || true
+      - name: Aderyn — GrokmeArenaV2.sol
+        run: aderyn --src contracts/GrokmeArenaV2.sol --output report-arena.md . 2>&1 || true
 
       - name: Aderyn — GrokmeArenaTrophy.sol
         run: aderyn --src contracts/GrokmeArenaTrophy.sol --output report-trophy.md . 2>&1 || true
@@ -82,7 +82,7 @@ jobs:
           echo "🔗 [grokme.io/security/audit](https://grokme.io/security/audit)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          for CONTRACT in "GrokmeArena:report-arena.md" "GrokmeArenaTrophy:report-trophy.md" "GrokNFT:report-groknft.md"; do
+          for CONTRACT in "GrokmeArenaV2:report-arena.md" "GrokmeArenaTrophy:report-trophy.md" "GrokNFT:report-groknft.md"; do
             NAME="${CONTRACT%%:*}"
             FILE="${CONTRACT##*:}"
             echo "### $NAME" >> $GITHUB_STEP_SUMMARY
@@ -96,7 +96,7 @@ jobs:
 
           echo "---" >> $GITHUB_STEP_SUMMARY
           echo "### Full Reports" >> $GITHUB_STEP_SUMMARY
-          for CONTRACT in "GrokmeArena:report-arena.md" "GrokmeArenaTrophy:report-trophy.md" "GrokNFT:report-groknft.md"; do
+          for CONTRACT in "GrokmeArenaV2:report-arena.md" "GrokmeArenaTrophy:report-trophy.md" "GrokNFT:report-groknft.md"; do
             NAME="${CONTRACT%%:*}"
             FILE="${CONTRACT##*:}"
             echo "#### $NAME" >> $GITHUB_STEP_SUMMARY
@@ -125,7 +125,7 @@ jobs:
         with:
           node-version: '20'
           slither-args: >
-            --filter-paths "contracts/archive,contracts/test,node_modules"
+            --filter-paths "contracts/archive,contracts/test,contracts/GrokmeArena.sol,node_modules"
             --checklist
             --markdown-root "https://github.com/${{ github.repository }}/blob/${{ github.sha }}/"
         continue-on-error: true
@@ -159,6 +159,6 @@ jobs:
           echo "| Aderyn (Cyfrin) | ${{ needs.aderyn.result == 'success' && '✅ Completed' || '⚠️ Check logs' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Slither (Trail of Bits) | ${{ needs.slither.result == 'success' && '✅ Completed' || '⚠️ Check logs' }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Contracts:** GrokNFT · GrokmeArena · GrokmeArenaTrophy" >> $GITHUB_STEP_SUMMARY
+          echo "**Contracts:** GrokmeArenaV2 · GrokmeArenaTrophy · GrokNFT" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Download Aderyn report from Artifacts above." >> $GITHUB_STEP_SUMMARY
